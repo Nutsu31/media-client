@@ -4,7 +4,8 @@ export function filterDuplicates(arr) {
   );
 }
 
-export const baseUrl = "https://b3df-2a0b-6204-31eb-cb00-c4be-47ce-b5b6-a0de.ngrok-free.app/";
+export const baseUrl =
+  "https://64ee-2a0b-6204-31eb-cb00-c4be-47ce-b5b6-a0de.ngrok-free.app/";
 
 export function filterWithCheckbox(arr, checkerArr, languageChecker) {
   const adFilter = arr.filter((item) => {
