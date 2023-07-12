@@ -1,0 +1,26 @@
+.btn-connect p {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.65rem 16px;
+  border: 0;
+  border-radius: 2.625rem;
+  font-family: "DM Sans", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #ff7a1a;
+  min-width: 300px;
+  width: 70%;
+}
+.btn-connect p:hover {
+  background-color: #ff7a1a;
+  color: #fff;
+}

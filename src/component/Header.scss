@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+.header {
+  width: 100%;
+  height: 104px;
+  z-index: 5;
+  color: #fff;
+  padding: 1.75rem 3rem;
+  box-sizing: border-box;
+  vertical-align: middle;
+  background-color: #0e243a;
+  font-size: 18px;
+
+  .header-container {
+    display: flex;
+    position: relative;
+    top: 0;
+    align-items: center;
+    justify-content: space-between;
+    width: 1300px;
+    max-width: 100%;
+    margin: 0 auto;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+
+      h1 {
+        margin: 0;
+      }
+    }
+
+    .right_side {
+      display: flex;
+      align-items: center;
+
+      nav {
+        display: flex;
+        margin-right: 3rem;
+
+        li:first-child {
+          display: none;
+        }
+
+        li {
+          list-style: none;
+          color: #fff;
+          margin-right: 2rem;
+          letter-spacing: 1px;
+          font-size: 18px;
+          line-height: 23px;
+          font-weight: 400;
+          font-family: "Open Sans", sans-serif;
+          cursor: pointer;
+        }
+      }
+
+      .button_box {
+        display: flex;
+
+        button {
+          text-transform: uppercase;
+          border: 0.2px solid #fff;
+          padding: 0.8rem 2rem;
+          font-size: 16px;
+          cursor: pointer;
+          font-family: "Open Sans", sans-serif;
+          border-radius: 6px;
+          line-height: 1.3;
+          transition: 0.3s ease all;
+          font-weight: bolder;
+        }
+
+        .login {
+          background-color: transparent;
+          color: #fff;
+          margin-right: 1.5rem;
+
+          &:hover {
+            background-color: #ffffffdf;
+            color: #130f40;
+          }
+        }
+
+        .sign_up {
+          background-color: #39b54a;
+          color: #fff;
+
+          &:hover {
+            background-color: #ffffffdf;
+            color: #130f40;
+          }
+        }
+
+        .sign_up:last-child {
+          display: none;
+        }
+      }
+
+      .user_box {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        .Log_out {
+          text-transform: uppercase;
+          border: 0.2px solid #fff;
+          padding: 0.8rem 2rem;
+          font-size: 16px;
+          cursor: pointer;
+          font-family: "Open Sans", sans-serif;
+          border-radius: 6px;
+         
+          transition: 0.3s ease all;
+          font-weight: bolder;
+
+          &:hover {
+            background-color: #39b54a;
+            color: #fff;
+          }
+        }
+
+        p {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .burger {
+      position: relative;
+      display: none;
+      flex-direction: column;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+
+      .line {
+        position: absolute;
+        transition: 0.3s all ease;
+        width: 100%;
+        margin-bottom: auto;
+        height: 1.5px;
+        background-color: #fff;
+      }
+
+      .middleLine {
+        top: 38%;
+      }
+    }
+  }
+}
+
+// start coding for Header response
+@media (max-width: 767px) {
+  .header {
+    height: 88px;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+
+    .header-container {
+      .right_side {
+        position: fixed;
+        justify-content: center;
+        padding: 0 3rem;
+        z-index: 10;
+        box-sizing: border-box;
+        width: 100%;
+        flex-direction: column;
+        top: 88px;
+        opacity: 1;
+        transition: 0.3s all ease;
+        background-color: #0e243a;
+        left: 0;
+        height: calc(100vh - 88px);
+
+        nav {
+          margin: 0;
+          flex-direction: column;
+          width: 100%;
+
+          li {
+            margin-right: 0;
+            position: relative;
+            text-align: center;
+            padding: 16px 0;
+            box-sizing: border-box;
+          }
+
+          li:after {
+            content: "";
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(28, 104, 255, 0.1);
+          }
+        }
+
+        .button_box {
+          flex-direction: column;
+          margin-top: 3rem;
+          width: 100%;
+
+          .login {
+            margin-bottom: 1rem;
+            margin-right: 0;
+          }
+        }
+      }
+
+      .hidden {
+        top: -100%;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .burger {
+        display: flex;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .header {
+    height: 72px;
+
+    .right_side {
+      top: 72px;
+      padding: 0 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.pay-container{
+   background: #2ca753;
+   width: 500px;
+   max-width: 95%;
+   margin: 8rem auto;
+   padding: 0.2rem 0.6rem;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1rem;
+   border-radius: 0.6rem;
+   .sign_btn{
+    background: #fff;
+    color: #2ca753;
+    transition: all 0.5s ease-out;
+    width: 100%;
+    &:hover{
+        background: #d7d2d2;
+    }
+   }
+}

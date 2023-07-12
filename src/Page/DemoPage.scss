@@ -1,0 +1,51 @@
+// @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+.demo_page {
+  // Header change for demo page
+  .header {
+    nav {
+      li {
+        display: none;
+      }
+
+      li:first-child {
+        display: block;
+      }
+    }
+
+    .button_box {
+      .login {
+        display: none;
+      }
+      .sign_up {
+        display: none;
+      }
+      .sign_up:last-child {
+        display: block;
+      }
+    }
+  }
+  //End Header Changes
+
+  .filter_divider {
+    padding: 4rem 3rem 0 3rem;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 767px) {
+  .demo_page {
+    .filter_divider {
+      padding: 1rem
+    }
+  }
+}
+
+
+@media (max-width: 479px) {
+  .demo_page {
+    .filter_divider {
+      padding: 3rem 1.5rem 0 1.5rem;
+      box-sizing: border-box;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+export const ACTION = {
+  FILTER_BY_DOMAIN: "filter-by-domain",
+  FILTER_DATA_WITH_DOMAIN: "filter-data-with-domain",
+  FILTER_BY_NICHE: "filter-by-niche",
+  FILTER_BY_NAME: "filter-by-name",
+  FILTER_BY_ADNETWORK: "filter-by-adNetword",
+  FILTER_BY_LANGUAGE: "filter-by-language",
+  FILTER_WITH_LANG: "filter-with-lang",
+  UPDATE_DATA: "UPDATE_DATA",
+  SORT_BY: "sort-by",
+  CLEAR_ALL: "clear-all",
+  CLEAR_SINGLE: "clear-single",
+  FETCH_USER_DATA: "fetch-user-data",
+  PAYMENT_SUCCEED: "payment-succeed",
+};
