@@ -30,21 +30,29 @@ const FilterBy = () => {
 
   function sortBy(value) {
     switch (value) {
-      // case SORT_ACTIONS.NAME_A_Z:
-      //   return dispatch({
-      //     type: ACTION.UPDATE_DATA,
-      //     payload: [...data].sort((a, b) =>
-      //       alphabeticalSort_Az(a.name, b.name)
-      //     ),
-      //   });
+      case SORT_ACTIONS.NAME_A_Z:
+        return dispatch({
+          type: ACTION.UPDATE_DATA,
+          payload: [...data].sort((a, b) =>
+            alphabeticalSort_Az(a.FirstName, b.FirstName)
+          ),
+        });
 
-      // case SORT_ACTIONS.DOMAIN_Z_A:
-      //   return dispatch({
-      //     type: ACTION.UPDATE_DATA,
-      //     payload: [...data].sort((a, b) =>
-      //       alphabeticalSort_Za(a.name, b.name)
-      //     ),
-      //   });
+      case SORT_ACTIONS.DOMAIN_Z_A:
+        return dispatch({
+          type: ACTION.UPDATE_DATA,
+          payload: [...data].sort((a, b) =>
+            alphabeticalSort_Za(a.FirstName, b.FirstName)
+          ),
+        });
+
+      case SORT_ACTIONS.NAME_Z_A:
+        return dispatch({
+          type: ACTION.UPDATE_DATA,
+          payload: [...data].sort((a, b) =>
+            alphabeticalSort_Za(a.FirstName, b.FirstName)
+          ),
+        });
 
       case SORT_ACTIONS.LANGUAGE_A_Z:
         return dispatch({
@@ -65,15 +73,7 @@ const FilterBy = () => {
         return dispatch({
           type: ACTION.UPDATE_DATA,
           payload: [...data].sort((a, b) =>
-            alphabeticalSort_Az(a.website, b.website)
-          ),
-        });
-
-      case SORT_ACTIONS.DOMAIN_Z_A:
-        return dispatch({
-          type: ACTION.UPDATE_DATA,
-          payload: [...data].sort((a, b) =>
-            alphabeticalSort_Za(a.website, b.website)
+            alphabeticalSort_Az(a.domain, b.domain)
           ),
         });
 
@@ -104,7 +104,7 @@ const FilterBy = () => {
             <option value="name-a-z">Name: A-Z...</option>
             <option value="domain-a-z">Domain: A-Z...</option>
             <option value="language-a-z">Language: A-Z...</option>
-            <option value="name-z-a">Name: A-Z...</option>
+            <option value="name-z-a">Name: Z-A...</option>
             <option value="domain-z-a">Domain: Z-A...</option>
             <option value="language-z-a">Language: Z-A...</option>
           </select>

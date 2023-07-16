@@ -16,8 +16,8 @@ export const AuthContextProvider = ({ children }) => {
 
   const loginHandlerFunction = (inputs, jwt) => {
     setCurrentUser({
-      name: inputs.firstName,
-      lastname: inputs.lastName,
+      firstName: inputs.firstName,
+      lastName: inputs.lastName,
       email: inputs.email,
       isActivated: inputs.isActivated,
       payment: inputs.payment,

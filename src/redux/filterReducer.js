@@ -1,10 +1,10 @@
 import { ACTION } from "./filterActions";
-import Data from "../db/index";
+
 const initialState = {
   filter: {
-    website: "",
-    name: "",
-    category: "",
+    domain: "",
+    FirstName: "",
+    niche: "",
     sortBy: "",
     adNetwork: [],
     language: [],
@@ -17,7 +17,7 @@ const initialState = {
     isActivated: false,
     payment: "",
   },
-  data: Data,
+  data: [],
 };
 
 const filterReducer = (state = initialState, action) => {
@@ -32,7 +32,7 @@ const filterReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          website: action.payload,
+          domain: action.payload,
         },
       };
     case ACTION.FILTER_DATA_WITH_DOMAIN:
@@ -45,7 +45,7 @@ const filterReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          category: action.payload,
+          niche: action.payload,
         },
       };
     case ACTION.FILTER_BY_NAME:
@@ -53,7 +53,7 @@ const filterReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          name: action.payload,
+          FirstName: action.payload,
         },
       };
     case ACTION.FILTER_BY_ADNETWORK:
@@ -86,10 +86,10 @@ const filterReducer = (state = initialState, action) => {
       return {
         ...state,
         filter: {
-          website: "",
-          category: "",
+          domain: "",
+          niche: "",
           sortBy: "",
-          name: "",
+          FirstName: "",
           adNetwork: [],
           language: [],
         },

@@ -4,8 +4,7 @@ export function filterDuplicates(arr) {
   );
 }
 
-export const baseUrl =
-  "https://64ee-2a0b-6204-31eb-cb00-c4be-47ce-b5b6-a0de.ngrok-free.app/";
+export const baseUrl = "http://localhost:4000/";
 
 export function filterWithCheckbox(arr, checkerArr, languageChecker) {
   const adFilter = arr.filter((item) => {
@@ -32,4 +31,9 @@ export function filterWithCheckbox(arr, checkerArr, languageChecker) {
 export const getAdNetworks = (arr) => {
   const adNetworks = arr.map((item) => item.adNetwork);
   return filterDuplicates(adNetworks);
+};
+
+export const getLanguages = (arr) => {
+  const language = arr.map((item) => item.language);
+  return filterDuplicates(language);
 };

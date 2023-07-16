@@ -6,6 +6,11 @@ import { ACTION } from "../../redux/filterActions";
 import { v4 as uuid4 } from "uuid";
 const FilterByWords = () => {
   const wordState = useSelector((state) => state.filter);
+  const FirstName = useSelector((state) => state.filter.FirstName);
+  const Niche = useSelector((state) => state.filter.niche);
+  const domain = useSelector((state) => state.filter.domain);
+  const language = useSelector((state) => state.filter.language);
+  const adNetwork = useSelector((state) => state.filter.adNetwork);
   const dispatch = useDispatch();
 
   const handleFilter = (ad, arr) => {
@@ -22,7 +27,7 @@ const FilterByWords = () => {
   };
   return (
     <>
-      {wordState.category && (
+      {Niche && (
         <Typography
           sx={{
             color: "white",
@@ -33,18 +38,18 @@ const FilterByWords = () => {
             padding: 2,
           }}
         >
-          {wordState.category}{" "}
+          {Niche}{" "}
           <Close
             onClick={() =>
               dispatch({
                 type: ACTION.CLEAR_SINGLE,
-                payload: { ...wordState, category: "" },
+                payload: { ...wordState, niche: "" },
               })
             }
           />
         </Typography>
       )}
-      {wordState.name && (
+      {FirstName && (
         <Typography
           sx={{
             color: "white",
@@ -55,18 +60,18 @@ const FilterByWords = () => {
             padding: 2,
           }}
         >
-          {wordState.name}
+          {FirstName}
           <Close
             onClick={() =>
               dispatch({
                 type: ACTION.CLEAR_SINGLE,
-                payload: { ...wordState, name: "" },
+                payload: { ...wordState, FirstName: "" },
               })
             }
           />
         </Typography>
       )}
-      {wordState.website && (
+      {domain && (
         <Typography
           sx={{
             color: "white",
@@ -77,18 +82,18 @@ const FilterByWords = () => {
             padding: 2,
           }}
         >
-          {wordState.website}{" "}
+          {domain}{" "}
           <Close
             onClick={() =>
               dispatch({
                 type: ACTION.CLEAR_SINGLE,
-                payload: { ...wordState, website: "" },
+                payload: { ...wordState, domain: "" },
               })
             }
           />
         </Typography>
       )}
-      {wordState.adNetwork.map((ad) => (
+      {adNetwork.map((ad) => (
         <Typography
           key={uuid4()}
           sx={{
@@ -100,10 +105,10 @@ const FilterByWords = () => {
             padding: 2,
           }}
         >
-          {ad} <Close onClick={() => handleFilter(ad, wordState.adNetwork)} />
+          {ad} <Close onClick={() => handleFilter(ad, adNetwork)} />
         </Typography>
       ))}
-      {wordState.language.map((lang) => (
+      {language.map((lang) => (
         <Typography
           key={uuid4()}
           sx={{
@@ -115,8 +120,7 @@ const FilterByWords = () => {
             padding: 2,
           }}
         >
-          {lang}{" "}
-          <Close onClick={() => handleLangFilter(lang, wordState.language)} />
+          {lang} <Close onClick={() => handleLangFilter(lang, language)} />
         </Typography>
       ))}
     </>

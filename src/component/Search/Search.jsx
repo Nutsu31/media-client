@@ -5,16 +5,23 @@ import SelectDropDown from "../OuterData/SelectDropDown";
 import { useMemo } from "react";
 import { filterDuplicates } from "../../utils/utilFunctions";
 import { Box } from "@mui/material";
-const Search = ({ filteredAdData }) => {
-  const website = useSelector((state) => state.filter.website);
-  const name = useSelector((state) => state.filter.name);
-  const niche = useSelector((state) => state.filter.category);
-  const language = useSelector((state) => state.data);
+
+const Search = () => {
+  const domain = useSelector((state) => state.filter.domain);
+  const FirstName = useSelector((state) => state.filter.FirstName);
+  const niche = useSelector((state) => state.filter.niche);
+  const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
   const getLanguage = useMemo(() => {
-    const newDataLanguage = language.map((i) => i.language);
+    const newDataLanguage = data.map((i) => i.language);
     return filterDuplicates(newDataLanguage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getAdNetworks = useMemo(() => {
+    const newDataAdNetwork = data.map((i) => i.adNetwork);
+    return filterDuplicates(newDataAdNetwork);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -61,7 +68,7 @@ const Search = ({ filteredAdData }) => {
           <input
             type="text"
             placeholder="Search"
-            value={name}
+            value={FirstName}
             onChange={handleNameFilter}
           />
         </div>
@@ -91,7 +98,7 @@ const Search = ({ filteredAdData }) => {
           <input
             type="text"
             placeholder="Search"
-            value={website}
+            value={domain}
             onChange={handleWebsiteFilter}
           />
         </div>
@@ -107,7 +114,7 @@ const Search = ({ filteredAdData }) => {
                 />
                 Ad Management
               </h4>
-              <SelectDropDown data={filteredAdData} dispatchTo="adNetwork" />
+              <SelectDropDown data={getAdNetworks} dispatchTo="adNetwork" />
             </Box>
             <Box>
               <h4 style={{ marginBottom: 4 }}>

@@ -56,7 +56,7 @@ const Header = () => {
           </nav>
           {currentUser !== null ? (
             <div className="user_box">
-              <p>{currentUser.name}</p>
+              <p>{currentUser.firstName}</p>
               <button className="Log_out" onClick={logoutHandlerFunction}>
                 logout
               </button>

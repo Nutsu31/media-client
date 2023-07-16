@@ -14,13 +14,26 @@ const CartPage = () => {
   const sendPayRequest = async () => {
     try {
       if (currentJwt !== null) {
-        const result = await axios.post(`${baseUrl}pay`, {
-          jwt: currentJwt,
-        });
-        localStorage.setItem("data", JSON.stringify(result.data));
-        if (result.data.status === "open") {
-          window.location.replace(result.data.url);
-        }
+        axios({
+          method: "POST",
+          url: `${baseUrl}pay`,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: {
+            jwt: currentJwt,
+          },
+        })
+          .then((res) => {
+            localStorage.setItem("data", JSON.stringify(res.data.session));
+            if (res.data.session.status === "open") {
+              window.location.href = res.data.session.url;
+            }
+          })
+          .catch((err) => console.log(err.response));
+        // const result = await axios.post(`${baseUrl}pay`, {
+        //   jwt: currentJwt,
+        // });
       }
     } catch (error) {
       console.log(error);

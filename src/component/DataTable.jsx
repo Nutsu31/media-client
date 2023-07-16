@@ -1,6 +1,6 @@
 import "./DataTable.scss";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import SkipNextTwoToneIcon from "@mui/icons-material/SkipNextTwoTone";
@@ -8,10 +8,15 @@ import SkipPreviousTwoToneIcon from "@mui/icons-material/SkipPreviousTwoTone";
 import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
 import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
 import BuySubsc from "./subscription/BuySubsc";
+import axios from "axios";
+import { baseUrl } from "../utils/utilFunctions";
+import { useDispatch } from "react-redux";
+import { ACTION } from "../redux/filterActions";
 
 const DataTable = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(15);
+  // const [data, setData] = useState([]);
   const npage = Math.ceil(data.length / recordsPerPage);
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
@@ -19,7 +24,7 @@ const DataTable = ({ data }) => {
   const numbers = [...Array(npage + 1).keys()].slice(1);
   const user = JSON.parse(localStorage.getItem("user"));
   const [buySubs, setBuySubs] = useState(false);
-
+  const dispatch = useDispatch();
   // Loads as many pages as the user selects
   const handleRecords = (val) => {
     const userVal = parseInt(val.target.value);
@@ -28,6 +33,17 @@ const DataTable = ({ data }) => {
       setRecordsPerPage(userVal);
     }
   };
+
+  useEffect(() => {
+    async function getDatas() {
+      const res = await axios.get(`${baseUrl}get-data`);
+      const data = res.data.data;
+      dispatch({ type: ACTION.UPDATE_DATA, payload: data });
+    }
+    getDatas();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Go to the previous page of the table
   const prePage = () => {
@@ -118,13 +134,13 @@ const DataTable = ({ data }) => {
           {records.map((i) => (
             <tr key={uuidv4()}>
               <td>{}</td>
-              <td>{i.name}</td>
-              <td>{i.website}</td>
-              <td>{i.category}</td>
+              <td>{i.FirstName}</td>
+              <td>{i.domain}</td>
+              <td>{i.niche}</td>
               <td>{i.language}</td>
               <td>{i.adNetwork}</td>
               <td className="lastTd">
-                <Link to={`/profile/${i.website}`}>
+                <Link to={`/profile/${i.domain}`}>
                   <NavigateNextIcon
                     fontSize="medium"
                     sx={{
