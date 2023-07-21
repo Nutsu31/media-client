@@ -32,10 +32,11 @@ const HomePageSection = () => {
   const navigate = useNavigate();
   const paymentStatus = useSelector((state) => state.user?.payment);
   const userEmail = useSelector((state) => state.user?.email);
+  const isActivated = useSelector((state) => state.user?.isActivated);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (paymentStatus === "succeeded") {
+    if (paymentStatus === "succeeded" && !isActivated) {
       axios({
         method: "PUT",
         url: `${baseUrl}update-status`,
@@ -57,7 +58,7 @@ const HomePageSection = () => {
         .catch((err) => console.log(err));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paymentStatus, userEmail]);
+  }, [paymentStatus, userEmail, isActivated]);
 
   return (
     <>
@@ -69,12 +70,12 @@ const HomePageSection = () => {
           <div className="greeting_text">
             <h1 className="main_text">
               The easiest way to find the most <br />
-              <span>profitable blogging</span> niches
+              <span>Profitable blogging</span> niches
             </h1>
             <p style={{ margin: "0" }}>
-              NicheFinder.io makes it easy to find low-competition, high-traffic
-              niches <br /> for your next blog or authority site. Lifetime
-              access for just $97.
+              SerpSupport.com makes it easy to find low-competition,
+              high-traffic niches <br /> for your next blog or authority site.
+              Lifetime access for just $97.
             </p>
             <p style={{ marginBottom: "2rem" }}>
               ❤️"Trusted by 600+ bloggers and niche site operators"

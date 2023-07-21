@@ -16,6 +16,10 @@ const initialState = {
     password: "",
     isActivated: false,
     payment: "",
+    payouts: [],
+    balance: 0,
+    referralEmail: "",
+    referrals: [],
   },
   data: [],
 };
@@ -103,6 +107,14 @@ const filterReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case ACTION.PAYOUTS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          payouts: action.payload,
+        },
       };
     default:
       return state;

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "./Auth/AuthContext";
 import { useDispatch } from "react-redux";
 import { ACTION } from "../redux/filterActions";
+import { Typography } from "@mui/material";
 
 const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
@@ -24,7 +25,7 @@ const Header = () => {
     <header className="header">
       <div className="header-container">
         <Link to="/">
-          <h1 className="logo">Logo</h1>
+          <Typography variant="h4">Serp Support</Typography>
         </Link>
         <div className={menuActive ? "right_side" : "right_side hidden"}>
           <nav>
@@ -50,13 +51,15 @@ const Header = () => {
                 offset={-70}
                 duration={500}
               >
-                Priving
+                Pricing
               </LinkScroll>
             </li>
           </nav>
           {currentUser !== null ? (
             <div className="user_box">
-              <p>{currentUser.firstName}</p>
+              <Link to="/my-profile" className="Log_out">
+                Profile
+              </Link>
               <button className="Log_out" onClick={logoutHandlerFunction}>
                 logout
               </button>

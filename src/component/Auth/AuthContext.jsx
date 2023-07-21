@@ -1,11 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext(null);
 
 export const AuthContextProvider = ({ children }) => {
   const printItems = localStorage.getItem("user");
   const prontJwt = localStorage.getItem("jwt");
-
   const [currentUser, setCurrentUser] = useState(
     printItems ? JSON.parse(printItems) : null
   );
@@ -13,14 +12,20 @@ export const AuthContextProvider = ({ children }) => {
   const [currentJwt, setCurrentJwt] = useState(
     printItems ? JSON.parse(prontJwt) : null
   );
+  const navigate = useNavigate();
 
   const loginHandlerFunction = (inputs, jwt) => {
     setCurrentUser({
+      id: inputs._id,
       firstName: inputs.firstName,
       lastName: inputs.lastName,
       email: inputs.email,
       isActivated: inputs.isActivated,
       payment: inputs.payment,
+      referral: inputs.referral,
+      balance: inputs.balance,
+      referralEmail: inputs.referralEmail,
+      createdAt: inputs.createdAt,
     });
 
     setCurrentJwt(jwt);
@@ -29,6 +34,7 @@ export const AuthContextProvider = ({ children }) => {
     setCurrentUser(null);
     setCurrentJwt(null);
     localStorage.setItem("data", null);
+    navigate("/");
   };
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));

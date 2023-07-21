@@ -4,7 +4,16 @@ export function filterDuplicates(arr) {
   );
 }
 
+// export const baseUrl = "https://serpsupport-d0fb33a56e3d.herokuapp.com/";
 export const baseUrl = "http://localhost:4000/";
+export const threeMonth = (timeNow) => {
+  const currentDate = new Date();
+  currentDate.setMonth(currentDate.getMonth() + 3);
+
+  const timeExpired = currentDate - timeNow;
+  console.log(timeExpired);
+  return timeExpired;
+};
 
 export function filterWithCheckbox(arr, checkerArr, languageChecker) {
   const adFilter = arr.filter((item) => {

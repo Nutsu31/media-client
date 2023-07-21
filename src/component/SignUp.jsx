@@ -1,7 +1,7 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { BiX } from "react-icons/bi";
 import "./SignUp.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { SignUpContext } from "./SummonLogin/SummonSignUpComponent";
 import { LoginContext } from "./SummonLogin/SummonLoginComponent";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,7 @@ export const SignUp = () => {
   const signUp = useContext(SignUpContext);
   const login = useContext(LoginContext);
   const loginRef = useRef(null);
-
+  const { search } = useLocation();
   const moveLoginHandler = () => {
     signUp?.signUpDltHandler();
     login?.loginSummonHandler();
@@ -31,20 +31,27 @@ export const SignUp = () => {
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {}, [search]);
+
   const registerHandler = async (data) => {
     try {
       if (data.password !== data.confirmPassword) {
         return;
       }
-      const dataAray = {
+      if (search.includes("?ref=")) {
+        console.log(search.split("=")[1]);
+      }
+      const dataArray = {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
         password: data.password,
         payment: "",
+        referralEmail: data.referralEmail,
+        referralId: search.includes("?ref=") && search.split("=")[1],
       };
       // eslint-disable-next-line no-unused-vars
-      const datass = await axios.post(`${baseUrl}auth/register`, dataAray);
+      const datass = await axios.post(`${baseUrl}auth/register`, dataArray);
       signUp?.signUpDltHandler();
       if (signUp?.btnClassname === "sign_btn") {
         window.location.href = "/cartpage";
@@ -142,11 +149,19 @@ export const SignUp = () => {
                 },
               })}
             />
+            <label>
+              <Typography>Referral email</Typography>
+            </label>
+            <input
+              type="email"
+              id="confirmpass"
+              {...register("referralEmail")}
+            />
             {errors.confirmPassword && (
               <p className="error">{errors?.confirmPassword?.message}</p>
             )}
 
-            <Typography>Minimum 8 characters</Typography>
+            <Typography>Password Minimum 8 characters</Typography>
 
             <button className="Continue-btn">
               <Typography>Continue</Typography>

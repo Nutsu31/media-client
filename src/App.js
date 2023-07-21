@@ -8,6 +8,8 @@ import PrivateCart from "./component/protectRoute/PrivateCart";
 import CartPage from "./component/cart/CartPage";
 import LoginSection from "./component/LoginSection";
 import { SignUp } from "./component/SignUp";
+import MyProfilePage from "./component/MyProfile/MyProfilePage";
+import PrivateRoute from "./component/protectRoute/PrivateRoute";
 
 function App() {
   return (
@@ -16,11 +18,15 @@ function App() {
       <SignUp />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/:ref" element={<HomePage />} />
         <Route exact path="/demo" element={<DemoPage />} />
         <Route exact path="/profile" element={<Profile />} />
-        <Route exact path="/profile/:website" element={<Profile />} />
+        <Route exact path="/profile/:domain" element={<Profile />} />
 
         <Route exact path="cartpage" element={<CartPage />} />
+        <Route exact element={<PrivateRoute />}>
+          <Route index path="/my-profile" element={<MyProfilePage />}></Route>
+        </Route>
 
         <Route exact path="/" element={<PrivateCart />}>
           <Route exact path="success" element={<PaymentSucces />} />

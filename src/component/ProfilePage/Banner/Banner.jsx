@@ -17,17 +17,18 @@ const { Paragraph, Text } = Typography;
 const { Statistic } = StatisticCard;
 
 const Banner = () => {
-  const { website } = useParams();
+  const { domain } = useParams();
+  console.log(domain);
 
   const dataState = useSelector((state) => state.data);
-  const findWebsite = dataState.find((site) => site.website === website);
+  const finddomain = dataState.find((site) => site.domain === domain);
   return (
     <>
       <div style={{ background: "#ECF8F9" }}>
         <PageContainer
           ghost
           header={{
-            title: "Website Link",
+            title: `${finddomain.domain}`,
             breadcrumb: {},
             style: { textAlign: "center" }, // Center the title
           }}
@@ -36,18 +37,20 @@ const Banner = () => {
               column={{ xs: 1, sm: 2, md: 3, lg: 6, xl: 6 }}
               style={{ marginBlockEnd: -16 }}
             >
-              <Descriptions.Item label="Name">Jhon Doe</Descriptions.Item>
+              <Descriptions.Item label="Name">
+                {finddomain.FirstName}
+              </Descriptions.Item>
               <Descriptions.Item label="Domain">
-                <a href="http://google.com">{findWebsite.website}</a>
+                <a href="http://google.com">{finddomain.domain}</a>
               </Descriptions.Item>
               <Descriptions.Item label="Niche">
-                {findWebsite.category}
+                {finddomain.niche}
               </Descriptions.Item>
               <Descriptions.Item label="Language">
-                {findWebsite.language}
+                {finddomain.language}
               </Descriptions.Item>
               <Descriptions.Item label="Ad Network">
-                {findWebsite.adNetwork}
+                {finddomain.adNetwork}
               </Descriptions.Item>
             </Descriptions>
           }
@@ -71,7 +74,7 @@ const Banner = () => {
       <Row className="card-container">
         <Row className="xsoft-heading">
           <Typography.Title level={1}>
-            <Text code>Xsoft.io </Text>Your Website Link
+            <Text code>Xsoft.io </Text>Your domain Link
             <Text code>Xsoft.io </Text>
             <Paragraph>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
@@ -87,7 +90,7 @@ const Banner = () => {
       <Card className="col-container">
         <Row justify="center" align="middle">
           <Col xs={{ span: 18, offset: 3 }} lg={{ span: 20, offset: 4 }}>
-            <Typography.Title level={4}>Your Website Link</Typography.Title>
+            <Typography.Title level={4}>Your domain Link</Typography.Title>
             <Paragraph>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
               qui distinctio reiciendis. Tempora architecto esse consequuntur.
@@ -99,7 +102,7 @@ const Banner = () => {
                   value={1982312}
                   layout="vertical"
                   description={
-                    <Statistic title="Website" value="6.15%" trend="down" />
+                    <Statistic title="domain" value="6.15%" trend="down" />
                   }
                 />
               </div>
@@ -143,7 +146,7 @@ const Banner = () => {
       <Card className="col-container">
         <Row justify="center" align="middle">
           <Col xs={{ span: 18, offset: 3 }} lg={{ span: 20, offset: 4 }}>
-            <Typography.Title level={4}>Your Website Link</Typography.Title>
+            <Typography.Title level={4}>Your domain Link</Typography.Title>
             <Paragraph>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
               qui distinctio reiciendis. Tempora architecto esse consequuntur.
@@ -155,7 +158,7 @@ const Banner = () => {
                   value={1982312}
                   layout="vertical"
                   description={
-                    <Statistic title="Website" value="6.15%" trend="down" />
+                    <Statistic title="domain" value="6.15%" trend="down" />
                   }
                 />
               </div>

@@ -41,7 +41,6 @@ const DataTable = ({ data }) => {
       dispatch({ type: ACTION.UPDATE_DATA, payload: data });
     }
     getDatas();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

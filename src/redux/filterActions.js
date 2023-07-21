@@ -12,4 +12,5 @@ export const ACTION = {
   CLEAR_SINGLE: "clear-single",
   FETCH_USER_DATA: "fetch-user-data",
   PAYMENT_SUCCEED: "payment-succeed",
+  PAYOUTS: "payouts",
 };
