@@ -20,6 +20,7 @@ const initialState = {
     balance: 0,
     referralEmail: "",
     referrals: [],
+    payoutAccId: "",
   },
   data: [],
 };
@@ -114,6 +115,14 @@ const filterReducer = (state = initialState, action) => {
         user: {
           ...state.user,
           payouts: action.payload,
+        },
+      };
+    case ACTION.UPDATE_PAYOUT_ID:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          payoutAccId: action.payload,
         },
       };
     default:

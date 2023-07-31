@@ -30,16 +30,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const AllTransaction = ({ payouts }) => {
-  console.log(payouts);
   return (
     <Box
       sx={{
-        width: "85%",
+        width: "100%",
         borderRadius: 7,
       }}
     >
-      <TableContainer component={Paper} sx={{ borderRadius: 6 }}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <TableContainer component={Paper} sx={{ borderRadius: 6, height: 500 }}>
+        <Table
+          sx={{ minWidth: 700, overflow: "auto" }}
+          aria-label="customized table"
+        >
           <TableHead>
             <TableRow>
               <StyledTableCell align="left">Transaction id</StyledTableCell>

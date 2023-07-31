@@ -17,9 +17,9 @@
     top: 0;
     align-items: center;
     justify-content: space-between;
-    width: 1300px;
+    width: 100%;
     max-width: 100%;
-    margin: 0 auto;
+    // margin: 0 auto;
 
     a {
       text-decoration: none;
@@ -109,7 +109,7 @@
           cursor: pointer;
           font-family: "Open Sans", sans-serif;
           border-radius: 6px;
-         
+
           transition: 0.3s ease all;
           font-weight: bolder;
 

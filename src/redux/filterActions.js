@@ -13,4 +13,5 @@ export const ACTION = {
   FETCH_USER_DATA: "fetch-user-data",
   PAYMENT_SUCCEED: "payment-succeed",
   PAYOUTS: "payouts",
+  UPDATE_PAYOUT_ID: "update-payout-id",
 };
