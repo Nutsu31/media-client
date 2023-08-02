@@ -125,6 +125,16 @@ const filterReducer = (state = initialState, action) => {
           payoutAccId: action.payload,
         },
       };
+    case ACTION.CHANGE_USER_NAME:
+      return {
+        ...state,
+        user: { ...state.user, firstName: action.payload },
+      };
+    case ACTION.CHANG_USER_LASTNAME:
+      return {
+        ...state,
+        user: { ...state.user, lastName: action.payload },
+      };
     default:
       return state;
   }
