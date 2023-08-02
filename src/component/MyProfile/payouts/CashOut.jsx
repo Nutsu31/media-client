@@ -5,8 +5,6 @@ import { baseUrl } from "../../../utils/utilFunctions";
 import { useDispatch, useSelector } from "react-redux";
 import { Close } from "@mui/icons-material";
 import { ACTION } from "../../../redux/filterActions";
-import { PaymentElement } from "@stripe/react-stripe-js";
-import PaymentForm from "./PaymentForm";
 
 const CashOut = ({ setCashingOut }) => {
   const [valid, setValid] = useState();
