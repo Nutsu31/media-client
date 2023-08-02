@@ -26,6 +26,7 @@ export const AuthContextProvider = ({ children }) => {
       balance: inputs.balance,
       referralEmail: inputs.referralEmail,
       createdAt: inputs.createdAt,
+      payoutAccId: inputs.payoutAccId,
     });
 
     setCurrentJwt(jwt);

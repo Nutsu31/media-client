@@ -1,18 +1,21 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import Money from "./Money";
-
+import { useMediaQuery } from "@mui/material";
 const PayoutHistory = ({ payouts }) => {
+  const max1100 = useMediaQuery("(max-width:1100px)");
+
   return (
     <Box
       sx={{
-        width: 860,
-        height: 240,
+        width: "100%",
+        height: max1100 ? 240 : 240,
         padding: 3,
         background: "white",
         borderRadius: 6,
         display: "flex",
         justifyContent: "space-evenly",
+        flexDirection: max1100 ? "column" : "row",
         gap: 2,
       }}
     >
@@ -33,7 +36,7 @@ const PayoutHistory = ({ payouts }) => {
           sx={{
             display: "flex",
             gap: 3,
-            flexDirection: "column",
+            flexDirection: max1100 ? "row" : "column",
             alignItems: "flex-start",
           }}
         >
@@ -51,7 +54,7 @@ const PayoutHistory = ({ payouts }) => {
               payouts?.length > 0 ? payouts[payouts?.length - 2]?.currency : "$"
             }
           />
-          <Button>Transaction history</Button>
+          <Button>History</Button>
         </Box>
       </Box>
       <Box sx={{ width: "1px", background: "gray", height: 200 }}></Box>
@@ -71,7 +74,7 @@ const PayoutHistory = ({ payouts }) => {
           sx={{
             display: "flex",
             gap: 3,
-            flexDirection: "column",
+            flexDirection: max1100 ? "row" : "column",
             alignItems: "flex-start",
           }}
         >
@@ -89,7 +92,7 @@ const PayoutHistory = ({ payouts }) => {
               payouts?.length > 0 ? payouts[payouts?.length - 1]?.currency : "$"
             }
           />
-          <Button>Transaction history</Button>
+          <Button>History</Button>
         </Box>
       </Box>
     </Box>

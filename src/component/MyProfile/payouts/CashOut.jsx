@@ -5,6 +5,9 @@ import { baseUrl } from "../../../utils/utilFunctions";
 import { useDispatch, useSelector } from "react-redux";
 import { Close } from "@mui/icons-material";
 import { ACTION } from "../../../redux/filterActions";
+import { PaymentElement } from "@stripe/react-stripe-js";
+import PaymentForm from "./PaymentForm";
+
 const CashOut = ({ setCashingOut }) => {
   const [valid, setValid] = useState();
   const [value, setValue] = useState();
@@ -18,14 +21,20 @@ const CashOut = ({ setCashingOut }) => {
   const userId = useSelector((state) => state.user.id);
   const balance = useSelector((state) => state.user.balance);
   const payouts = useSelector((state) => state.user?.payouts);
+  const payoutAccId = useSelector((state) => state.user?.payoutAccId);
+
   const jwt = JSON.parse(localStorage.getItem("jwt"));
 
   const dispatch = useDispatch();
   const onSubmit = (e) => {
     e.preventDefault();
-    if (balance < 60) {
+    if (false) {
       return;
     } else {
+      console.log(
+        "🚀 ~ file: CashOut.jsx:25 ~ CashOut ~ payoutAccId:",
+        payoutAccId
+      );
       jwt &&
         axios({
           method: "POST",
@@ -98,13 +107,7 @@ const CashOut = ({ setCashingOut }) => {
           required={true}
           fullWidth
         />
-        <Button
-          fullWidth
-          type="submit"
-          variant="contained"
-          disabled={balance < 60 ? true : false}
-          sx={{ height: 50 }}
-        >
+        <Button fullWidth type="submit" variant="contained" sx={{ height: 50 }}>
           Cash Out
         </Button>
       </form>

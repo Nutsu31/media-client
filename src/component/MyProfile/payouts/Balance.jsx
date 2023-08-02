@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import Money from "./Money";
 import { useSelector } from "react-redux";
 
@@ -7,12 +7,13 @@ const date = new Date();
 
 const Balance = ({ setCashingOut }) => {
   const balance = useSelector((state) => state.user.balance);
+  const max1100 = useMediaQuery("(max-width:1100px)");
   console.log(balance);
   return (
     <Box
       sx={{
-        width: 500,
-        height: 240,
+        width: "100%",
+        height: max1100 ? 120 : 240,
         padding: 3,
         background: "white",
         borderRadius: 6,
@@ -31,7 +32,7 @@ const Balance = ({ setCashingOut }) => {
         sx={{
           display: "flex",
           gap: 3,
-          flexDirection: "column",
+          flexDirection: max1100 ? "row" : "column",
           alignItems: "flex-start",
         }}
       >
