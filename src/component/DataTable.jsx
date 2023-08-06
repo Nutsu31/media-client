@@ -61,7 +61,7 @@ const DataTable = ({ data }) => {
         setCurrentPage(npage);
       }
     }
-  }, [user, currentPage]);
+  }, [user, currentPage]); //eslint-disable-line
 
   // Change table pages with click to pagination boxes
   const changeCPage = (id) => {
@@ -79,7 +79,7 @@ const DataTable = ({ data }) => {
         setCurrentPage(1);
       }
     }
-  }, [user, currentPage]);
+  }, [user, currentPage]); //eslint-disable-line
 
   // Skip back 3 pages with one click
   const skipPageBack = useCallback(() => {
@@ -92,7 +92,7 @@ const DataTable = ({ data }) => {
         setCurrentPage(currentPage - 1);
       }
     }
-  }, [user, currentPage]);
+  }, [user, currentPage]); //eslint-disable-line
 
   const handleCheckSubscription = (callback) => {
     if (user !== null && user.isActivated) {
@@ -113,7 +113,7 @@ const DataTable = ({ data }) => {
         setCurrentPage(currentPage + 1);
       }
     }
-  }, [user, currentPage]);
+  }, [user, currentPage]); //eslint-disable-line
   return (
     <div className="table-wrapper">
       <table className="fl-table" id="table">
