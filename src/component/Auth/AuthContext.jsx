@@ -6,31 +6,46 @@ export const AuthContextProvider = ({ children }) => {
   const printItems = localStorage.getItem("user");
   const prontJwt = localStorage.getItem("jwt");
   const [currentUser, setCurrentUser] = useState(
-    printItems ? JSON.parse(printItems) : null
+    () => JSON.parse(printItems) || null
   );
 
   const [currentJwt, setCurrentJwt] = useState(
-    printItems ? JSON.parse(prontJwt) : null
+    () => JSON.parse(prontJwt) || null
   );
   const navigate = useNavigate();
 
   const loginHandlerFunction = (inputs, jwt) => {
+    const {
+      _id,
+      firstName,
+      lastName,
+      email,
+      isActivated,
+      payment,
+      referral,
+      balance,
+      referralEmail,
+      createdAt,
+      payoutAccId,
+    } = inputs;
+
     setCurrentUser({
-      id: inputs._id,
-      firstName: inputs.firstName,
-      lastName: inputs.lastName,
-      email: inputs.email,
-      isActivated: inputs.isActivated,
-      payment: inputs.payment,
-      referral: inputs.referral,
-      balance: inputs.balance,
-      referralEmail: inputs.referralEmail,
-      createdAt: inputs.createdAt,
-      payoutAccId: inputs.payoutAccId,
+      id: _id,
+      firstName,
+      lastName,
+      email,
+      isActivated,
+      payment,
+      referral,
+      balance,
+      referralEmail,
+      createdAt,
+      payoutAccId,
     });
 
     setCurrentJwt(jwt);
   };
+
   const logoutHandlerFunction = () => {
     setCurrentUser(null);
     setCurrentJwt(null);

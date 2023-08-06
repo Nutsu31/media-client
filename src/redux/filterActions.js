@@ -14,4 +14,6 @@ export const ACTION = {
   PAYMENT_SUCCEED: "payment-succeed",
   PAYOUTS: "payouts",
   UPDATE_PAYOUT_ID: "update-payout-id",
+  CHANGE_USER_NAME: "change-user-name",
+  CHANG_USER_LASTNAME: "change-user-lastname",
 };

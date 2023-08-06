@@ -11,8 +11,11 @@ import { ACTION } from "../../redux/filterActions";
 import StripeConnect from "./payouts/StripeConnect";
 const Payout = () => {
   const [cashingOut, setCashingOut] = useState(false);
-
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  
+  //eslint-disable-next-line
+  const [token, setToken] = useState(() =>
+    JSON.parse(localStorage.getItem("jwt"))
+  );
 
   const dispatch = useDispatch();
   const payouts = useSelector((state) => state.user?.payouts);

@@ -5,13 +5,14 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
+import { logger } from "redux-logger";
 import { Provider } from "react-redux";
 import filterReducer from "./redux/filterReducer";
 import { SummonLoginProvide } from "./component/SummonLogin/SummonLoginComponent";
 import { SummonSignUpComponent } from "./component/SummonLogin/SummonSignUpComponent";
 import { AuthContextProvider } from "./component/Auth/AuthContext";
 
-const store = createStore(filterReducer, applyMiddleware(thunk));
+const store = createStore(filterReducer, applyMiddleware(thunk, logger));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -8,6 +8,7 @@ export const STRIPE_PUBLISHABLE_KEY =
 
 // export const baseUrl = "https://serpsupport-d0fb33a56e3d.herokuapp.com/";
 export const baseUrl = "http://localhost:4000/";
+
 export const threeMonth = (timeNow) => {
   const currentDate = new Date();
   currentDate.setMonth(currentDate.getMonth() + 3);
@@ -35,9 +36,6 @@ export function filterWithCheckbox(arr, checkerArr, languageChecker) {
 
   return adFilter;
 }
-// export function filterWithLanguage(arr, checkerArr) {
-//   return arr.filter((item) => checkerArr.includes(item.language));
-// }
 
 export const getAdNetworks = (arr) => {
   const adNetworks = arr.map((item) => item.adNetwork);

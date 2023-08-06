@@ -9,8 +9,8 @@ const SelectDropDown = ({ data, dispatchTo }) => {
   const size480 = useMediaQuery("(max-width:767px)");
 
   const addKeyToData = useMemo(() => {
-    const mydata = [...data];
-    const newData = mydata.map((item) => {
+    const myData = [...data];
+    const newData = myData.map((item) => {
       return { key: item };
     });
     return newData;
@@ -56,7 +56,7 @@ const SelectDropDown = ({ data, dispatchTo }) => {
         multiselectContainer: {
           color: "black",
           fontFamily: "sans-serif",
-          fontSize: size767 && "14px",
+          fontSize: size767 ? "14px" : "16px",
         },
         searchBox: {
           width: size767 ? "120px" : size480 ? "100%" : "200px",
