@@ -31,7 +31,6 @@ export const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {}, [search]);
 
   const registerHandler = async (data) => {
     try {

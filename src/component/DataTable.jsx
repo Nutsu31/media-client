@@ -12,7 +12,7 @@ import axios from "axios";
 import { baseUrl } from "../utils/utilFunctions";
 import { useDispatch } from "react-redux";
 import { ACTION } from "../redux/filterActions";
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 
 const DataTable = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -223,4 +223,4 @@ const DataTable = ({ data }) => {
   );
 };
 
-export default DataTable;
+export default memo(DataTable);

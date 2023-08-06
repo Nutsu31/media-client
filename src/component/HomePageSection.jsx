@@ -1,4 +1,5 @@
 import "./HomePageSection.scss";
+import { memo, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NichesHub from "../Images/nicheshub.png";
 import HeroTraffic from "../Images/hero-traffic.png";
@@ -29,10 +30,11 @@ const style = {
 const HomePageSection = () => {
   const { currentJwt } = useContext(AuthContext);
   const signUp = useContext(SignUpContext);
-  const navigate = useNavigate();
   const paymentStatus = useSelector((state) => state.user?.payment);
   const userEmail = useSelector((state) => state.user?.email);
   const isActivated = useSelector((state) => state.user?.isActivated);
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -59,6 +61,10 @@ const HomePageSection = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paymentStatus, userEmail, isActivated]);
+
+  const handleRedirect = useCallback(() => {
+    navigate("/cartpage");
+  }, []);
 
   return (
     <>
@@ -190,7 +196,7 @@ const HomePageSection = () => {
                   alignItems: "center",
                   display: "flex",
                 }}
-                onClick={() => navigate("/cartpage")}
+                onClick={handleRedirect}
               >
                 {paymentStatus === "succeeded" ? "Paid" : "Pay Now"}
               </Button>
@@ -211,4 +217,4 @@ const HomePageSection = () => {
   );
 };
 
-export default HomePageSection;
+export default memo(HomePageSection);
