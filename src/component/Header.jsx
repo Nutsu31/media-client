@@ -8,7 +8,7 @@ import { AuthContext } from "./Auth/AuthContext";
 import { useDispatch } from "react-redux";
 import { ACTION } from "../redux/filterActions";
 import { Typography } from "@mui/material";
-
+import { memo } from "react";
 const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
   const login = useContext(LoginContext);
@@ -105,4 +105,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

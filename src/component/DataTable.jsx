@@ -1,6 +1,6 @@
 import "./DataTable.scss";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import SkipNextTwoToneIcon from "@mui/icons-material/SkipNextTwoTone";
@@ -12,15 +12,23 @@ import axios from "axios";
 import { baseUrl } from "../utils/utilFunctions";
 import { useDispatch } from "react-redux";
 import { ACTION } from "../redux/filterActions";
+import { useMemo, memo } from "react";
 
 const DataTable = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(15);
   const npage = Math.ceil(data.length / recordsPerPage);
-  const lastIndex = currentPage * recordsPerPage;
-  const firstIndex = lastIndex - recordsPerPage;
-  const records = [...data].slice(firstIndex, lastIndex);
-  const numbers = [...Array(npage + 1).keys()].slice(1);
+
+  const records = useMemo(() => {
+    const lastIndex = currentPage * recordsPerPage;
+    const firstIndex = lastIndex - recordsPerPage;
+    return [...data].slice(firstIndex, lastIndex);
+  }, [currentPage, data, recordsPerPage]);
+
+  const numbers = useMemo(() => {
+    return [...Array(npage + 1).keys()].slice(1);
+  }, [npage]);
+
   const user = JSON.parse(localStorage.getItem("user"));
   const [buySubs, setBuySubs] = useState(false);
   const dispatch = useDispatch();
@@ -45,7 +53,7 @@ const DataTable = ({ data }) => {
   }, []);
 
   // Go to the previous page of the table
-  const prePage = () => {
+  const prePage = useCallback(() => {
     if (user !== null && user.isActivated) {
       if (currentPage !== 1) {
         setCurrentPage(currentPage - 1);
@@ -53,7 +61,7 @@ const DataTable = ({ data }) => {
         setCurrentPage(npage);
       }
     }
-  };
+  }, [user, currentPage]); //eslint-disable-line
 
   // Change table pages with click to pagination boxes
   const changeCPage = (id) => {
@@ -63,7 +71,7 @@ const DataTable = ({ data }) => {
   };
 
   // Move to the next page of the table
-  const nextPage = () => {
+  const nextPage = useCallback(() => {
     if (user !== null && user.isActivated) {
       if (currentPage !== npage) {
         setCurrentPage(currentPage + 1);
@@ -71,10 +79,10 @@ const DataTable = ({ data }) => {
         setCurrentPage(1);
       }
     }
-  };
+  }, [user, currentPage]); //eslint-disable-line
 
   // Skip back 3 pages with one click
-  const skipPageBack = () => {
+  const skipPageBack = useCallback(() => {
     if (user !== null && user.isActivated) {
       if (currentPage !== 1 && currentPage > 3) {
         setCurrentPage(currentPage - 3);
@@ -84,7 +92,7 @@ const DataTable = ({ data }) => {
         setCurrentPage(currentPage - 1);
       }
     }
-  };
+  }, [user, currentPage]); //eslint-disable-line
 
   const handleCheckSubscription = (callback) => {
     if (user !== null && user.isActivated) {
@@ -95,7 +103,7 @@ const DataTable = ({ data }) => {
   };
 
   // Skip forward 3 pages with one click
-  const skipPageNext = () => {
+  const skipPageNext = useCallback(() => {
     if (user !== null && user.isActivated) {
       if (currentPage !== npage && currentPage <= npage - 3) {
         setCurrentPage(currentPage + 3);
@@ -105,7 +113,7 @@ const DataTable = ({ data }) => {
         setCurrentPage(currentPage + 1);
       }
     }
-  };
+  }, [user, currentPage]); //eslint-disable-line
   return (
     <div className="table-wrapper">
       <table className="fl-table" id="table">
@@ -215,4 +223,4 @@ const DataTable = ({ data }) => {
   );
 };
 
-export default DataTable;
+export default memo(DataTable);

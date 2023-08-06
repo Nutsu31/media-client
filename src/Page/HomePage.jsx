@@ -1,15 +1,16 @@
 import "./HomePage.scss";
-// import Header from "../component/Header";
-// import Footer from "../component/Footer";
 import HomePageSection from "../component/HomePageSection";
 import Layout from "../Layout/Layout";
+import { lazy, Suspense } from "react";
+
+const LazyHomePageSection = lazy(() => import("../component/HomePageSection"));
 
 const HomePage = () => {
   return (
     <Layout>
-      {/* <Header /> */}
-      <HomePageSection />
-      {/* <Footer /> */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyHomePageSection />
+      </Suspense>
     </Layout>
   );
 };

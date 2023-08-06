@@ -9,7 +9,7 @@ import { filterWithCheckbox } from "../utils/utilFunctions";
 import Layout from "../Layout/Layout";
 import axios from "axios";
 import { baseUrl } from "../utils/utilFunctions";
-
+import { useMemo } from "react";
 const DemoPage = () => {
   const [data, setData] = useState([]);
 
@@ -21,7 +21,6 @@ const DemoPage = () => {
   const adNetworks = useSelector((state) => state.filter.adNetwork);
   const language = useSelector((state) => state.filter.language);
   const FirstName = useSelector((state) => state.filter.FirstName);
-  
 
   useEffect(() => {
     async function getData() {
@@ -37,43 +36,39 @@ const DemoPage = () => {
     }
 
     getData();
-  }, []);
+  }, []); //eslint-disable-line
 
-  useEffect(() => {
+  const filteredData = useMemo(() => {
     const keyList = ["domain", "niche", "adNetwork", "language"];
-    const filteredData = [...data].filter((item) => {
+    return data.filter((item) => {
       const domainMatch = item.domain
         .toLowerCase()
         .includes(domain.toLowerCase());
       const categoryMatch = keyList.some((key) =>
         item[key].toLowerCase().includes(niche.trim().toLowerCase())
       );
-
       const firstNameMatch = item.FirstName.toLowerCase().includes(
         FirstName.toLowerCase()
       );
-
       return domainMatch && categoryMatch && firstNameMatch;
     });
+  }, [data, domain, niche, adNetworks, FirstName, language]); //eslint-disable-line
 
+  useEffect(() => {
     const filteredWithCheckbox = filterWithCheckbox(
       filteredData,
       adNetworks,
       language
     );
 
-    if (filteredWithCheckbox.length > 0) {
-      console.log(filteredData);
-      dispatch({
-        type: ACTION.FILTER_DATA_WITH_DOMAIN,
-        payload: filteredWithCheckbox.slice(0, data.length),
-      }); // Limiting the displayed items to 10 or create Pagination
-    } else {
-      dispatch({
-        type: ACTION.FILTER_DATA_WITH_DOMAIN,
-        payload: filteredData.slice(0, data.length),
-      }); // Limiting the displayed items to 10 or create Pagination
-    }
+    const filteredDataLength = filteredWithCheckbox.length;
+    const displayedData =
+      filteredDataLength > 0 ? filteredWithCheckbox : filteredData;
+
+    dispatch({
+      type: ACTION.FILTER_DATA_WITH_DOMAIN,
+      payload: displayedData.slice(0, data.length),
+    });
   }, [domain, niche, adNetworks, FirstName, language]); // eslint-disable-line
 
   return (
