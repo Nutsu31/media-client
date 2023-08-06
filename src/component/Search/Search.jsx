@@ -25,23 +25,6 @@ const Search = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const handleCheckFilter = (event, options) => {
-  //   const isChecked = event.target.checked;
-  //   const adNetworkId = event.target.id;
-
-  //   if (isChecked) {
-  //     dispatch({
-  //       type: ACTION.FILTER_BY_ADNETWORK,
-  //       payload: [...adNetworkState, adNetworkId],
-  //     });
-  //   } else {
-  //     dispatch({
-  //       type: ACTION.FILTER_BY_ADNETWORK,
-  //       payload: adNetworkState.filter((item) => item !== adNetworkId),
-  //     });
-  //   }
-  // };
-
   const handleNicheFilter = (event) => {
     dispatch({ type: ACTION.FILTER_BY_NICHE, payload: event.target.value });
   };
