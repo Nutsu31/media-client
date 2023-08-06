@@ -1,6 +1,6 @@
 import { Menu } from "@mui/icons-material";
 import { Box, Button, Typography, useMediaQuery } from "@mui/material";
-import React from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
 
 const Dashboard = ({ setPage, setHideMenu, hideMenu }) => {
@@ -87,4 +87,4 @@ const Dashboard = ({ setPage, setHideMenu, hideMenu }) => {
   );
 };
 
-export default Dashboard;
+export default memo(Dashboard);

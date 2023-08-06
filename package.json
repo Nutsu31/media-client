@@ -2,9 +2,12 @@
   "name": "reactredux",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "18.17.0",
+    "npm": "9.8.1"
+  },
   "dependencies": {
-    "@ant-design/plots": "^1.2.5",
-    "@ant-design/pro-components": "^2.6.2",
+    "@ant-design/pro-components": "^2.6.10",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@handsontable/react": "^12.4.0",
@@ -15,11 +18,9 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.6.2",
+    "antd": "^5.8.1",
     "axios": "^1.4.0",
-    "bootstrap": "^5.3.0",
     "dotenv": "^16.3.1",
-    "faker": "^4.1.0",
     "handsontable": "^12.4.0",
     "multiselect-react-dropdown": "^2.0.25",
     "node": "^20.2.0",

@@ -10,15 +10,17 @@ const Settings = () => {
   const user = useSelector((state) => state.user);
   const createdAt = new Date(user?.createdAt).toLocaleString();
   const [loader, setLoader] = useState(false);
-  const theme = useTheme();
+
   const [edit, setEdit] = useState("");
   const [send, setSend] = useState(false);
   const [editUserInfo, setEditUserInfo] = useState({
     firstName: "",
     lastName: "",
   });
-  const token = JSON.parse(localStorage.getItem("jwt"));
-
+  //eslint-disable-next-line
+  const [token, setToken] = useState(() =>
+    JSON.parse(localStorage.getItem("jwt"))
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     if (send && token) {
@@ -45,6 +47,7 @@ const Settings = () => {
         });
     }
     localStorage.setItem("user", JSON.stringify(user));
+    //eslint-disable-next-line
   }, [send]);
 
   const handleChangeName = (response) => {

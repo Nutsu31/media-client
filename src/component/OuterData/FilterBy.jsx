@@ -3,19 +3,21 @@ import "./FilterBy.scss";
 import FilterByWords from "./FilterByWords";
 import { Typography } from "@mui/material";
 import { ACTION } from "../../redux/filterActions";
-
+import { useMemo } from "react";
 const FilterBy = () => {
   const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
-  const SORT_ACTIONS = {
-    NAME_A_Z: "name-a-z",
-    NAME_Z_A: "name-z-a",
-    DOMAIN_A_Z: "domain-a-z",
-    DOMAIN_Z_A: "domain-z-a",
-    LANGUAGE_A_Z: "language-a-z",
-    LANGUAGE_Z_A: "language-z-a",
-  };
+  const SORT_ACTIONS = useMemo(() => {
+    return {
+      NAME_A_Z: "name-a-z",
+      NAME_Z_A: "name-z-a",
+      DOMAIN_A_Z: "domain-a-z",
+      DOMAIN_Z_A: "domain-z-a",
+      LANGUAGE_A_Z: "language-a-z",
+      LANGUAGE_Z_A: "language-z-a",
+    };
+  }, []);
 
   const alphabeticalSort_Az = (a, b) => {
     if (a.toLowerCase() < b.toLowerCase()) return -1;

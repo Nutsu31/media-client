@@ -16,15 +16,15 @@ import { ACTION } from "../redux/filterActions";
 const DataTable = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(15);
-  // const [data, setData] = useState([]);
   const npage = Math.ceil(data.length / recordsPerPage);
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
-  const records = data.slice(firstIndex, lastIndex);
+  const records = [...data].slice(firstIndex, lastIndex);
   const numbers = [...Array(npage + 1).keys()].slice(1);
   const user = JSON.parse(localStorage.getItem("user"));
   const [buySubs, setBuySubs] = useState(false);
   const dispatch = useDispatch();
+
   // Loads as many pages as the user selects
   const handleRecords = (val) => {
     const userVal = parseInt(val.target.value);

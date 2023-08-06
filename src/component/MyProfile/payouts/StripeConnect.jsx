@@ -6,11 +6,11 @@ import axios from "axios";
 import { baseUrl } from "../../../utils/utilFunctions";
 import { useDispatch, useSelector } from "react-redux";
 import { ACTION } from "../../../redux/filterActions";
-import { useNavigate } from "react-router-dom";
+
 const StripeConnect = ({ setCashingOut }) => {
   const id = useSelector((state) => state.user?.id);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   console.log(id);
   const handleConnect = async () => {
     id &&

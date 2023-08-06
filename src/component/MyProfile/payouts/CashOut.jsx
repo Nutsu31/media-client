@@ -17,22 +17,18 @@ const CashOut = ({ setCashingOut }) => {
   };
 
   const userId = useSelector((state) => state.user.id);
-  const balance = useSelector((state) => state.user.balance);
   const payouts = useSelector((state) => state.user?.payouts);
-  const payoutAccId = useSelector((state) => state.user?.payoutAccId);
+
 
   const jwt = JSON.parse(localStorage.getItem("jwt"));
 
   const dispatch = useDispatch();
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (false) {
       return;
     } else {
-      console.log(
-        "🚀 ~ file: CashOut.jsx:25 ~ CashOut ~ payoutAccId:",
-        payoutAccId
-      );
       jwt &&
         axios({
           method: "POST",
