@@ -69,7 +69,7 @@ const Header = () => {
               <button className="login" onClick={login?.loginSummonHandler}>
                 login
               </button>
-              <button className="sign_up" onClick={signup?.signUpHandler}>
+              <button className="sign_up" onClick={signup.emailVerifyhandler}>
                 sign up
               </button>
               <button className="sign_up">logout</button>

@@ -1,11 +1,11 @@
 import "./HomePage.scss";
-import HomePageSection from "../component/HomePageSection";
 import Layout from "../Layout/Layout";
 import { lazy, Suspense } from "react";
 import { useState, useEffect } from "react";
 const LazyHomePageSection = lazy(() => import("../component/HomePageSection"));
 
 const HomePage = () => {
+  // eslint-disable-next-line
   const [user, setUser] = useState(() =>
     JSON.parse(localStorage.getItem("user"))
   );
