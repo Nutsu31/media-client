@@ -25,7 +25,7 @@ const Header = () => {
     <header className="header">
       <div className="header-container">
         <Link to="/">
-          <Typography variant="h4">Serp Support</Typography>
+          <Typography variant="h4">SERPSupport</Typography>
         </Link>
         <div className={menuActive ? "right_side" : "right_side hidden"}>
           <nav>

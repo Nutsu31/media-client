@@ -16,11 +16,11 @@ const DemoPage = () => {
   const dispatch = useDispatch();
 
   const reduxData = useSelector((state) => state.data);
-  const domain = useSelector((state) => state.filter.domain);
-  const niche = useSelector((state) => state.filter.niche);
-  const adNetworks = useSelector((state) => state.filter.adNetwork);
-  const language = useSelector((state) => state.filter.language);
-  const FirstName = useSelector((state) => state.filter.FirstName);
+  const domain = useSelector((state) => state.filter?.Domain);
+  const niche = useSelector((state) => state.filter?.Niche);
+  const adNetworks = useSelector((state) => state.filter?.AdNetwork);
+  const language = useSelector((state) => state.filter?.Language);
+  const FirstName = useSelector((state) => state.filter?.Name);
 
   useEffect(() => {
     async function getData() {
@@ -39,21 +39,24 @@ const DemoPage = () => {
   }, []); //eslint-disable-line
 
   const filteredData = useMemo(() => {
-    const keyList = ["domain", "niche", "adNetwork", "language"];
+    const keyList = ["Domain", "Niche", "AdNetwork", "Language", "Email"];
     return data.filter((item) => {
-      const domainMatch = item.domain
-        .toLowerCase()
-        .includes(domain.toLowerCase());
-      const categoryMatch = keyList.some((key) =>
-        item[key].toLowerCase().includes(niche.trim().toLowerCase())
+      const domainMatch = item?.Domain.toLowerCase().includes(
+        domain.toLowerCase()
       );
-      const firstNameMatch = item.FirstName.toLowerCase().includes(
+      const categoryMatch = keyList.some((key) =>
+        item[key]?.toLowerCase().includes(niche?.trim().toLowerCase())
+      );
+      const firstNameMatch = item?.Name.toLowerCase().includes(
         FirstName.toLowerCase()
       );
       return domainMatch && categoryMatch && firstNameMatch;
     });
   }, [data, domain, niche, adNetworks, FirstName, language]); //eslint-disable-line
 
+
+
+  
   useEffect(() => {
     const filteredWithCheckbox = filterWithCheckbox(
       filteredData,

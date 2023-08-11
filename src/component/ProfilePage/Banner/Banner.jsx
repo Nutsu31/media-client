@@ -21,14 +21,14 @@ const Banner = () => {
   console.log(domain);
 
   const dataState = useSelector((state) => state.data);
-  const finddomain = dataState.find((site) => site.domain === domain);
+  const finddomain = dataState.find((site) => site?.Domain === domain);
   return (
     <>
       <div style={{ background: "#ECF8F9" }}>
         <PageContainer
           ghost
           header={{
-            title: `${finddomain.domain}`,
+            title: `${finddomain.Domain}`,
             breadcrumb: {},
             style: { textAlign: "center" }, // Center the title
           }}
@@ -38,19 +38,24 @@ const Banner = () => {
               style={{ marginBlockEnd: -16 }}
             >
               <Descriptions.Item label="Name">
-                {finddomain.FirstName}
+                {finddomain?.Name}
               </Descriptions.Item>
               <Descriptions.Item label="Domain">
-                <a href="http://google.com">{finddomain.domain}</a>
+                <a href={`https://${finddomain.Domain}`}>
+                  {finddomain?.Domain}
+                </a>
               </Descriptions.Item>
               <Descriptions.Item label="Niche">
-                {finddomain.niche}
+                {finddomain?.Niche}
               </Descriptions.Item>
               <Descriptions.Item label="Language">
-                {finddomain.language}
+                {finddomain?.Language}
+              </Descriptions.Item>
+              <Descriptions.Item label="Email">
+                {finddomain?.Email}
               </Descriptions.Item>
               <Descriptions.Item label="Ad Network">
-                {finddomain.adNetwork}
+                {finddomain?.AdNetwork}
               </Descriptions.Item>
             </Descriptions>
           }
