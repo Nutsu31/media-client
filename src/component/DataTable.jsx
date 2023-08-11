@@ -46,6 +46,7 @@ const DataTable = ({ data }) => {
     async function getDatas() {
       const res = await axios.get(`${baseUrl}get-data`);
       const data = res.data.data;
+      
       dispatch({ type: ACTION.UPDATE_DATA, payload: data });
     }
     getDatas();
@@ -126,6 +127,8 @@ const DataTable = ({ data }) => {
             <th>D</th>
             <th>E</th>
             <th>F</th>
+            <th>G</th>
+            <th>H</th>
           </tr>
           <tr className="data_name_column">
             <th></th>
@@ -133,6 +136,8 @@ const DataTable = ({ data }) => {
             <th>Domain</th>
             <th>Niche</th>
             <th>Language</th>
+            <th>email</th>
+            <th>added</th>
             <th>Add Network</th>
             <th>Profile</th>
           </tr>
@@ -141,13 +146,15 @@ const DataTable = ({ data }) => {
           {records.map((i) => (
             <tr key={uuidv4()}>
               <td>{}</td>
-              <td>{i.FirstName}</td>
-              <td>{i.domain}</td>
-              <td>{i.niche}</td>
-              <td>{i.language}</td>
-              <td>{i.adNetwork}</td>
+              <td>{i.Name}</td>
+              <td>{i.Domain}</td>
+              <td>{i.Niche}</td>
+              <td>{i.Language}</td>
+              <td>{i.Email}</td>
+              <td>{i.Added}</td>
+              <td>{i.AdNetwork}</td>
               <td className="lastTd">
-                <Link to={`/profile/${i.domain}`}>
+                <Link to={`/profile/${i.Domain}`}>
                   <NavigateNextIcon
                     fontSize="medium"
                     sx={{

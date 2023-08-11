@@ -7,20 +7,20 @@ import { filterDuplicates } from "../../utils/utilFunctions";
 import { Box } from "@mui/material";
 
 const Search = () => {
-  const domain = useSelector((state) => state.filter.domain);
-  const FirstName = useSelector((state) => state.filter.FirstName);
-  const niche = useSelector((state) => state.filter.niche);
+  const domain = useSelector((state) => state.filter.Domain);
+  const FirstName = useSelector((state) => state.filter.Name);
+  const niche = useSelector((state) => state.filter.Niche);
   const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
   const getLanguage = useMemo(() => {
-    const newDataLanguage = data.map((i) => i.language);
+    const newDataLanguage = data.map((i) => i.Language);
     return filterDuplicates(newDataLanguage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getAdNetworks = useMemo(() => {
-    const newDataAdNetwork = data.map((i) => i.adNetwork);
+    const newDataAdNetwork = data.map((i) => i.AdNetwork);
     return filterDuplicates(newDataAdNetwork);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

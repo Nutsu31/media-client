@@ -6,7 +6,8 @@ export function filterDuplicates(arr) {
 export const STRIPE_PUBLISHABLE_KEY =
   "pk_test_51NVVMNJsEZJkoRsxRDNQDBb26I5FglOzaEZNenb4094ZXlmO4gFJYGMRVZOsrSL0KomTA242yuia7ImrfapOa7590001lgHJDU";
 
-export const baseUrl = "https://serpsupport-d0fb33a56e3d.herokuapp.com/";
+// export const baseUrl = "https://serpsupport-d0fb33a56e3d.herokuapp.com/";
+export const baseUrl = "http://localhost:4000/";
 
 export const threeMonth = (timeNow) => {
   const currentDate = new Date();
@@ -21,13 +22,13 @@ export function filterWithCheckbox(arr, checkerArr, languageChecker) {
   const adFilter = arr.filter((item) => {
     if (checkerArr.length > 0 && languageChecker.length > 0) {
       return (
-        checkerArr.includes(item.adNetwork) &&
-        languageChecker.includes(item.language)
+        checkerArr.includes(item.AdNetwork) &&
+        languageChecker.includes(item.Language)
       );
     } else if (checkerArr.length > 0 && languageChecker.length === 0) {
-      return checkerArr.includes(item.adNetwork);
+      return checkerArr.includes(item.AdNetwork);
     } else if (checkerArr.length === 0 && languageChecker.length > 0) {
-      return languageChecker.includes(item.language);
+      return languageChecker.includes(item.Language);
     }
 
     return false;
@@ -37,11 +38,18 @@ export function filterWithCheckbox(arr, checkerArr, languageChecker) {
 }
 
 export const getAdNetworks = (arr) => {
-  const adNetworks = arr.map((item) => item.adNetwork);
+  const adNetworks = arr.map((item) => item.AdNetwork);
   return filterDuplicates(adNetworks);
 };
 
 export const getLanguages = (arr) => {
-  const language = arr.map((item) => item.language);
+  const language = arr.map((item) => item.Language);
   return filterDuplicates(language);
+};
+
+const rand = () => {
+  return Math.floor(Math.random() * 100000);
+};
+export const randomToken = () => {
+  return rand() + rand() + rand();
 };

@@ -1,19 +1,23 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiX } from "react-icons/bi";
 import "./SignUp.scss";
 import { Link, useLocation } from "react-router-dom";
 import { SignUpContext } from "./SummonLogin/SummonSignUpComponent";
 import { LoginContext } from "./SummonLogin/SummonLoginComponent";
-import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Typography } from "@mui/material";
 import { baseUrl } from "../utils/utilFunctions";
+import { randomToken } from "../utils/utilFunctions";
+import emailjs from "@emailjs/browser";
+import Cookie from "universal-cookie";
+import EmailVerify from "./Verification/EmailVerify";
 
-export const SignUp = () => {
+export const SignUp = ({ userInfo, setUserInfo, setVerify }) => {
   const signUp = useContext(SignUpContext);
   const login = useContext(LoginContext);
   const loginRef = useRef(null);
   const { search } = useLocation();
+
   const moveLoginHandler = () => {
     signUp?.signUpDltHandler();
     login?.loginSummonHandler();
@@ -25,22 +29,14 @@ export const SignUp = () => {
     }
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-
-  const registerHandler = async (data) => {
+  const onSubmit = (data) => {
     try {
       if (data.password !== data.confirmPassword) {
         return;
       }
-      if (search.includes("?ref=")) {
-        console.log(search.split("=")[1]);
-      }
-      const dataArray = {
+      // eslint-disable-next-line no-unused-vars
+
+      const userData = {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
@@ -49,8 +45,13 @@ export const SignUp = () => {
         referralEmail: data.referralEmail,
         referralId: search.includes("?ref=") && search.split("=")[1],
       };
-      // eslint-disable-next-line no-unused-vars
-      const datass = await axios.post(`${baseUrl}auth/register`, dataArray);
+      async function registerUser() {
+        const datass = await axios.post(`${baseUrl}auth/register`, userData);
+        const res = datass.data;
+        console.log("🚀 ~ file: SignUp.jsx:75 ~ registerHandler ~ res:", res);
+      }
+      registerUser();
+
       signUp?.signUpDltHandler();
       if (signUp?.btnClassname === "sign_btn") {
         window.location.href = "/cartpage";
@@ -70,95 +71,39 @@ export const SignUp = () => {
         <button className="delete-btn" onClick={signUp?.signUpDltHandler}>
           <BiX />
         </button>
-        <form
-          onSubmit={handleSubmit((data) => {
-            registerHandler(data);
-          })}
-        >
+        <form onSubmit={onSubmit(userInfo)}>
           <div className="Name-Box">
             <div>
               <label>
                 <Typography>First Name</Typography>
               </label>
-              <input
-                type="text"
-                {...register("firstName", { required: "This is required" })}
-              />
-              {errors.firstName && (
-                <p className="error">{errors?.firstName?.message}</p>
-              )}
+              <input type="text" value={userInfo?.firstName} />
             </div>
             <div>
               <label>
                 <Typography>Last Name</Typography>
               </label>
-              <input
-                type="text"
-                {...register("lastName", {
-                  required: "This is required",
-                  minLength: {
-                    value: 4,
-                    message: "Min length is 4",
-                  },
-                })}
-              />
-              {errors.lastname && (
-                <p className="error">{errors?.lastname?.message}</p>
-              )}
+              <input type="text" />
             </div>
           </div>
           <div className="personInfo-box">
             <label>
               <Typography>Email *</Typography>
             </label>
-            <input
-              type="email"
-              id="email"
-              {...register("email", { required: "This is required" })}
-            />
-            {errors.email && <p className="error">{errors?.email?.message}</p>}
+            <input type="email" id="email" />
             <label>
               <Typography>Your Password</Typography>
             </label>
-            <input
-              type="password"
-              id="password"
-              {...register("password", {
-                required: "This is required",
-                minLength: {
-                  value: 6,
-                  message: "Min length is 6",
-                },
-              })}
-            />
-            {errors.password && (
-              <p className="error">{errors?.password?.message}</p>
-            )}
+            <input type="password" id="password" />
+
             <label>
               <Typography>Confirm Your Password*</Typography>
             </label>
-            <input
-              type="password"
-              id="confirmpass"
-              {...register("confirmPassword", {
-                required: "This is required",
-                minLength: {
-                  value: 6,
-                  message: "Min length is 6",
-                },
-              })}
-            />
+            <input type="password" id="confirmpass" />
             <label>
               <Typography>Referral email</Typography>
             </label>
-            <input
-              type="email"
-              id="confirmpass"
-              {...register("referralEmail")}
-            />
-            {errors.confirmPassword && (
-              <p className="error">{errors?.confirmPassword?.message}</p>
-            )}
+            <input type="email" id="confirmpass" />
 
             <Typography>Password Minimum 8 characters</Typography>
 

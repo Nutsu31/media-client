@@ -2,12 +2,12 @@ import { ACTION } from "./filterActions";
 
 const initialState = {
   filter: {
-    domain: "",
-    FirstName: "",
-    niche: "",
+    Domain: "",
+    Name: "",
+    Niche: "",
     sortBy: "",
-    adNetwork: [],
-    language: [],
+    AdNetwork: [],
+    Language: [],
   },
   user: {
     firstName: "",
@@ -37,7 +37,7 @@ const filterReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          domain: action.payload,
+          Domain: action.payload,
         },
       };
     case ACTION.FILTER_DATA_WITH_DOMAIN:
@@ -50,7 +50,7 @@ const filterReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          niche: action.payload,
+          Niche: action.payload,
         },
       };
     case ACTION.FILTER_BY_NAME:
@@ -58,7 +58,7 @@ const filterReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          FirstName: action.payload,
+          Name: action.payload,
         },
       };
     case ACTION.FILTER_BY_ADNETWORK:
@@ -66,7 +66,7 @@ const filterReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          adNetwork: action.payload,
+          AdNetwork: action.payload,
         },
       };
     case ACTION.FILTER_BY_LANGUAGE:
@@ -74,7 +74,7 @@ const filterReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          language: action.payload,
+          Language: action.payload,
         },
       };
     case ACTION.FILTER_WITH_LANG:
@@ -91,12 +91,12 @@ const filterReducer = (state = initialState, action) => {
       return {
         ...state,
         filter: {
-          domain: "",
-          niche: "",
+          Domain: "",
+          Niche: "",
           sortBy: "",
-          FirstName: "",
-          adNetwork: [],
-          language: [],
+          Name: "",
+          AdNetwork: [],
+          Language: [],
         },
       };
     case ACTION.FETCH_USER_DATA:

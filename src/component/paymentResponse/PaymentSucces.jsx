@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Done } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -10,11 +10,18 @@ import { baseUrl } from "../../utils/utilFunctions";
 const PaymentSucces = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const user = JSON.parse(localStorage.getItem("user"));
-  const jwt = JSON.parse(localStorage.getItem("jwt"));
-  const data = JSON.parse(localStorage.getItem("data"));
-
+  //eslint-disable-next-line
+  const [user, setUser] = useState(() =>
+    JSON.parse(localStorage.getItem("user"))
+  );
+  const [jwt, setJwt] = useState(() => JSON.parse(localStorage.getItem("jwt"))); //eslint-disable-line
+  //eslint-disable-next-line
+  const [data, setData] = useState(() =>
+    JSON.parse(localStorage.getItem("data"))
+  ); //eslint-disable-line
+  useEffect(() => {
+    console.log(jwt, data, user);
+  }, [jwt, data, user]);
   const handleGetPayment = async () => {
     if (data) {
       axios({

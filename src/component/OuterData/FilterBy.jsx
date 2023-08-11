@@ -20,13 +20,13 @@ const FilterBy = () => {
   }, []);
 
   const alphabeticalSort_Az = (a, b) => {
-    if (a.toLowerCase() < b.toLowerCase()) return -1;
-    if (a.toLowerCase() > b.toLowerCase()) return 1;
+    if (a?.toLowerCase() < b?.toLowerCase()) return -1;
+    if (a?.toLowerCase() > b?.toLowerCase()) return 1;
     return 0;
   };
   const alphabeticalSort_Za = (a, b) => {
-    if (a.toLowerCase() < b.toLowerCase()) return 1;
-    if (a.toLowerCase() > b.toLowerCase()) return -1;
+    if (a?.toLowerCase() < b?.toLowerCase()) return 1;
+    if (a?.toLowerCase() > b?.toLowerCase()) return -1;
     return 0;
   };
 
@@ -36,7 +36,7 @@ const FilterBy = () => {
         return dispatch({
           type: ACTION.UPDATE_DATA,
           payload: [...data].sort((a, b) =>
-            alphabeticalSort_Az(a.FirstName, b.FirstName)
+            alphabeticalSort_Az(a.Name, b.Name)
           ),
         });
 
@@ -44,7 +44,7 @@ const FilterBy = () => {
         return dispatch({
           type: ACTION.UPDATE_DATA,
           payload: [...data].sort((a, b) =>
-            alphabeticalSort_Za(a.FirstName, b.FirstName)
+            alphabeticalSort_Za(a.Name, b.Name)
           ),
         });
 
@@ -52,7 +52,7 @@ const FilterBy = () => {
         return dispatch({
           type: ACTION.UPDATE_DATA,
           payload: [...data].sort((a, b) =>
-            alphabeticalSort_Za(a.FirstName, b.FirstName)
+            alphabeticalSort_Za(a.Name, b.Name)
           ),
         });
 
@@ -60,7 +60,7 @@ const FilterBy = () => {
         return dispatch({
           type: ACTION.UPDATE_DATA,
           payload: [...data].sort((a, b) =>
-            alphabeticalSort_Az(a.language, b.language)
+            alphabeticalSort_Az(a.Language, b.Language)
           ),
         });
 
@@ -68,14 +68,14 @@ const FilterBy = () => {
         return dispatch({
           type: ACTION.UPDATE_DATA,
           payload: [...data].sort((a, b) =>
-            alphabeticalSort_Za(a.language, b.language)
+            alphabeticalSort_Za(a.Language, b.Language)
           ),
         });
       case SORT_ACTIONS.DOMAIN_A_Z:
         return dispatch({
           type: ACTION.UPDATE_DATA,
           payload: [...data].sort((a, b) =>
-            alphabeticalSort_Az(a.domain, b.domain)
+            alphabeticalSort_Az(a.Domain, b.Domain)
           ),
         });
 

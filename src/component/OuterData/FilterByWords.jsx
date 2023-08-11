@@ -6,11 +6,11 @@ import { ACTION } from "../../redux/filterActions";
 import { v4 as uuid4 } from "uuid";
 const FilterByWords = () => {
   const wordState = useSelector((state) => state.filter);
-  const FirstName = useSelector((state) => state.filter.FirstName);
-  const Niche = useSelector((state) => state.filter.niche);
-  const domain = useSelector((state) => state.filter.domain);
-  const language = useSelector((state) => state.filter.language);
-  const adNetwork = useSelector((state) => state.filter.adNetwork);
+  const Name = useSelector((state) => state.filter?.Name);
+  const Niche = useSelector((state) => state.filter?.Niche);
+  const domain = useSelector((state) => state.filter?.Domain);
+  const language = useSelector((state) => state.filter?.Language);
+  const adNetwork = useSelector((state) => state.filter?.AdNetwork);
   const dispatch = useDispatch();
 
   const handleFilter = (ad, arr) => {
@@ -49,7 +49,7 @@ const FilterByWords = () => {
           />
         </Typography>
       )}
-      {FirstName && (
+      {Name && (
         <Typography
           sx={{
             color: "white",
@@ -60,12 +60,12 @@ const FilterByWords = () => {
             padding: 2,
           }}
         >
-          {FirstName}
+          {Name}
           <Close
             onClick={() =>
               dispatch({
                 type: ACTION.CLEAR_SINGLE,
-                payload: { ...wordState, FirstName: "" },
+                payload: { ...wordState, Name: "" },
               })
             }
           />
@@ -93,7 +93,7 @@ const FilterByWords = () => {
           />
         </Typography>
       )}
-      {adNetwork.map((ad) => (
+      {adNetwork?.map((ad) => (
         <Typography
           key={uuid4()}
           sx={{
@@ -108,7 +108,7 @@ const FilterByWords = () => {
           {ad} <Close onClick={() => handleFilter(ad, adNetwork)} />
         </Typography>
       ))}
-      {language.map((lang) => (
+      {language?.map((lang) => (
         <Typography
           key={uuid4()}
           sx={{
