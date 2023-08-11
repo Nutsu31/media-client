@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="footer-container container">
         <div className="footer-box-container">
           <div className="box">
-            <h2>Logo</h2>
+            <h2>SERPsupport</h2>
             <p>
               SerpSupport.com makes it easy to find low-competition,
               high-traffic niches for your next blog or authority site.

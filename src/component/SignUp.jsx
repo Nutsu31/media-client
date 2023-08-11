@@ -72,20 +72,20 @@ export const SignUp = ({ userInfo, setUserInfo }) => {
               <label>
                 <Typography>First Name</Typography>
               </label>
-              <input type="text" value={userInfo.firstName} readOnly />
+              <input type="text" value={userInfo?.firstName} readOnly />
             </div>
             <div>
               <label>
                 <Typography>Last Name</Typography>
               </label>
-              <input type="text" value={userInfo.lastName} readOnly />
+              <input type="text" value={userInfo?.lastName} readOnly />
             </div>
           </div>
           <div className="personInfo-box">
             <label>
               <Typography>Email *</Typography>
             </label>
-            <input type="email" id="email" value={userInfo.email} readOnly />
+            <input type="email" id="email" value={userInfo?.email} readOnly />
             <label>
               <Typography>Your Password</Typography>
             </label>
