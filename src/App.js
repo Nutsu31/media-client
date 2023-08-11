@@ -1,22 +1,18 @@
 import { Profile, HomePage, DemoPage } from "./component";
 import { Routes, Route } from "react-router-dom";
 import Header from "./component/Header";
-
 import PaymentSucces from "./component/paymentResponse/PaymentSucces";
 import PaymentError from "./component/paymentResponse/PaymentError";
 import PrivateCart from "./component/protectRoute/PrivateCart";
 import CartPage from "./component/cart/CartPage";
-import LoginSection from "./component/LoginSection";
-import { SignUp } from "./component/SignUp";
 import MyProfilePage from "./component/MyProfile/MyProfilePage";
 import PrivateRoute from "./component/protectRoute/PrivateRoute";
-import EmailVerify from "./component/Verification/EmailVerify";
+import SignUpControlFlow from "./component/SignUpControlFlow";
 
 function App() {
   return (
     <>
-      <LoginSection />
-      <SignUp />
+      <SignUpControlFlow />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/:ref" element={<HomePage />} />

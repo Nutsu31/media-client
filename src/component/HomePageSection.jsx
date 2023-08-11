@@ -8,7 +8,6 @@ import trafficSearch from "../Images/search-traffic.png";
 import textCover from "../Images/XMLID_71.png";
 import Domain from "../Images/Domain.png";
 import LoginSection from "./LoginSection";
-import { SignUp } from "./SignUp";
 import { Col, Row } from "antd";
 import greenThing from "../Images/greenComp.png";
 import { useContext, useEffect } from "react";
@@ -64,12 +63,13 @@ const HomePageSection = () => {
 
   const handleRedirect = useCallback(() => {
     navigate("/cartpage");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <LoginSection />
-      <SignUp />
+     
       <section className="first_section">
         {/* Home Page Main text Divider */}
         <div className="first_section-container">
@@ -204,7 +204,7 @@ const HomePageSection = () => {
               <button
                 className="sign_btn"
                 onClick={(event) => {
-                  signUp.signUpHandler(event.target.className);
+                  signUp.emailVerifyhandler();
                 }}
               >
                 sign up

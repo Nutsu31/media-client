@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { BiX } from "react-icons/bi";
 import "./SignUp.scss";
 import { Link, useLocation } from "react-router-dom";
@@ -7,12 +7,8 @@ import { LoginContext } from "./SummonLogin/SummonLoginComponent";
 import axios from "axios";
 import { Typography } from "@mui/material";
 import { baseUrl } from "../utils/utilFunctions";
-import { randomToken } from "../utils/utilFunctions";
-import emailjs from "@emailjs/browser";
-import Cookie from "universal-cookie";
-import EmailVerify from "./Verification/EmailVerify";
 
-export const SignUp = ({ userInfo, setUserInfo, setVerify }) => {
+export const SignUp = ({ userInfo, setUserInfo }) => {
   const signUp = useContext(SignUpContext);
   const login = useContext(LoginContext);
   const loginRef = useRef(null);
@@ -29,20 +25,19 @@ export const SignUp = ({ userInfo, setUserInfo, setVerify }) => {
     }
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     try {
-      if (data.password !== data.confirmPassword) {
+      if (userInfo.password !== userInfo.confirmPassword) {
         return;
       }
-      // eslint-disable-next-line no-unused-vars
 
       const userData = {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        password: data.password,
+        firstName: userInfo.firstName,
+        lastName: userInfo.lastName,
+        email: userInfo.email,
+        password: userInfo.password,
         payment: "",
-        referralEmail: data.referralEmail,
         referralId: search.includes("?ref=") && search.split("=")[1],
       };
       async function registerUser() {
@@ -71,39 +66,47 @@ export const SignUp = ({ userInfo, setUserInfo, setVerify }) => {
         <button className="delete-btn" onClick={signUp?.signUpDltHandler}>
           <BiX />
         </button>
-        <form onSubmit={onSubmit(userInfo)}>
+        <form onSubmit={onSubmit}>
           <div className="Name-Box">
             <div>
               <label>
                 <Typography>First Name</Typography>
               </label>
-              <input type="text" value={userInfo?.firstName} />
+              <input type="text" value={userInfo.firstName} readOnly />
             </div>
             <div>
               <label>
                 <Typography>Last Name</Typography>
               </label>
-              <input type="text" />
+              <input type="text" value={userInfo.lastName} readOnly />
             </div>
           </div>
           <div className="personInfo-box">
             <label>
               <Typography>Email *</Typography>
             </label>
-            <input type="email" id="email" />
+            <input type="email" id="email" value={userInfo.email} readOnly />
             <label>
               <Typography>Your Password</Typography>
             </label>
-            <input type="password" id="password" />
+            <input
+              type="password"
+              id="password"
+              onChange={(e) =>
+                setUserInfo({ ...userInfo, password: e.target.value })
+              }
+            />
 
             <label>
               <Typography>Confirm Your Password*</Typography>
             </label>
-            <input type="password" id="confirmpass" />
-            <label>
-              <Typography>Referral email</Typography>
-            </label>
-            <input type="email" id="confirmpass" />
+            <input
+              type="password"
+              id="confirmpass"
+              onChange={(e) =>
+                setUserInfo({ ...userInfo, confirmPassword: e.target.value })
+              }
+            />
 
             <Typography>Password Minimum 8 characters</Typography>
 
