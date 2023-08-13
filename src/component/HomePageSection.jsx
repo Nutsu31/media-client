@@ -10,7 +10,7 @@ import Domain from "../Images/Domain.png";
 import LoginSection from "./LoginSection";
 import { Col, Row } from "antd";
 import greenThing from "../Images/greenComp.png";
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { AuthContext } from "./Auth/AuthContext";
 import { SignUpContext } from "./SummonLogin/SummonSignUpComponent";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,36 +30,10 @@ const HomePageSection = () => {
   const { currentJwt } = useContext(AuthContext);
   const signUp = useContext(SignUpContext);
   const paymentStatus = useSelector((state) => state.user?.payment);
-  const userEmail = useSelector((state) => state.user?.email);
-  const isActivated = useSelector((state) => state.user?.isActivated);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (paymentStatus === "succeeded" && !isActivated) {
-      axios({
-        method: "PUT",
-        url: `${baseUrl}update-status`,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: {
-          email: userEmail,
-          jwt: currentJwt,
-        },
-      })
-        .then((res) => {
-          dispatch({
-            type: ACTION.FETCH_USER_DATA,
-            payload: res.data.updateUser,
-          });
-          localStorage.setItem("user", JSON.stringify(res.data.updateUser));
-        })
-        .catch((err) => console.log(err));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paymentStatus, userEmail, isActivated]);
 
   const handleRedirect = useCallback(() => {
     navigate("/cartpage");
@@ -69,7 +43,6 @@ const HomePageSection = () => {
   return (
     <>
       <LoginSection />
-     
       <section className="first_section">
         {/* Home Page Main text Divider */}
         <div className="first_section-container">

@@ -1,7 +1,7 @@
 import { Box, Typography, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Done } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ACTION } from "../../redux/filterActions";
@@ -19,10 +19,9 @@ const PaymentSucces = () => {
   const [data, setData] = useState(() =>
     JSON.parse(localStorage.getItem("data"))
   ); //eslint-disable-line
-  useEffect(() => {
-    console.log(jwt, data, user);
-  }, [jwt, data, user]);
+
   const handleGetPayment = async () => {
+    const newURL = "/";
     if (data) {
       axios({
         method: "GET",

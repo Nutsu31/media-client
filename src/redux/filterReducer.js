@@ -15,6 +15,7 @@ const initialState = {
     email: "",
     password: "",
     isActivated: false,
+    verified: null,
     payment: "",
     payouts: [],
     balance: 0,

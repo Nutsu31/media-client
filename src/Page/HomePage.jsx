@@ -14,9 +14,7 @@ const HomePage = () => {
   const [data, setData] = useState(() =>
     JSON.parse(localStorage.getItem("data"))
   ); //eslint-disable-line
-  useEffect(() => {
-    console.log(jwt, data, user);
-  }, [jwt, data, user]);
+
   return (
     <Layout>
       <Suspense fallback={<div>Loading...</div>}>

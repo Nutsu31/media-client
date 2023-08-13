@@ -22,6 +22,7 @@ const Settings = () => {
     JSON.parse(localStorage.getItem("jwt"))
   );
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (send && token) {
       setLoader(true);
@@ -35,7 +36,6 @@ const Settings = () => {
         },
       })
         .then((res) => {
-          console.log(res);
           setSend(false);
           setLoader(false);
           handleChangeName(res);

@@ -30,11 +30,6 @@ const LoginSection = () => {
   const loginHandler = async (data) => {
     try {
       const loginData = await axios.post(`${baseUrl}auth/login`, data);
-
-      console.log(
-        "🚀 ~ file: LoginSection.jsx:34 ~ loginHandler ~ loginData:",
-        loginData
-      );
       setLoginError(<p className="error">{loginData.data.message}</p>);
       dispatch({ type: ACTION.FETCH_USER_DATA, payload: loginData.data.user });
       loginHandlerFunction(loginData.data.user, loginData.data.jwt);
