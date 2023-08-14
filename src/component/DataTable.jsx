@@ -44,14 +44,20 @@ const DataTable = ({ data }) => {
 
   useEffect(() => {
     async function getDatas() {
-      const res = await axios.get(`${baseUrl}get-data`);
+      const res = await axios.get(`${baseUrl}get-data`, {
+        headers: { "Content-Type": "application/json" },
+        params: {
+          page: currentPage,
+          limit: recordsPerPage,
+        },
+      });
       const data = res.data.data;
-      
+
       dispatch({ type: ACTION.UPDATE_DATA, payload: data });
     }
     getDatas();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentPage, recordsPerPage]);
 
   // Go to the previous page of the table
   const prePage = useCallback(() => {

@@ -6,6 +6,7 @@ import { ClipLoader } from "react-spinners";
 import { baseUrl } from "../../utils/utilFunctions";
 import axios from "axios";
 import { ACTION } from "../../redux/filterActions";
+import ChangePassword from "./Settings/ChangePassword";
 const Settings = () => {
   const user = useSelector((state) => state.user);
   const createdAt = new Date(user?.createdAt).toLocaleString();
@@ -16,12 +17,20 @@ const Settings = () => {
   const [editUserInfo, setEditUserInfo] = useState({
     firstName: "",
     lastName: "",
+    password: {
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+    },
   });
+
   //eslint-disable-next-line
   const [token, setToken] = useState(() =>
     JSON.parse(localStorage.getItem("jwt"))
   );
   const dispatch = useDispatch();
+
+
   useEffect(() => {
     if (send && token) {
       setLoader(true);
@@ -35,7 +44,6 @@ const Settings = () => {
         },
       })
         .then((res) => {
-          console.log(res);
           setSend(false);
           setLoader(false);
           handleChangeName(res);
@@ -232,6 +240,62 @@ const Settings = () => {
               sx={{
                 position: "absolute",
                 right: edit === "lastname" ? "40px" : "-70px",
+                top: 0,
+                transition: "0.3s ease",
+              }}
+            >
+              <Done
+                sx={{ color: "green" }}
+                onClick={() =>
+                  handleSend(setSend, setEdit, setEditUserInfo, "lastName")
+                }
+              />
+              <Close
+                sx={{ color: "red" }}
+                onClick={() => {
+                  setEdit("");
+                  setEditUserInfo({
+                    ...editUserInfo,
+                    lastName: "",
+                  });
+                }}
+              />
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              width: "100%",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <InfoRow
+              label="Password"
+              value={
+                edit === "password" ? (
+                  <ChangePassword
+                    editUserInfo={editUserInfo}
+                    setEditUserInfo={setEditUserInfo}
+                  />
+                ) : (
+                  "************"
+                )
+              }
+            />
+            <Edit
+              sx={{
+                position: "absolute",
+                top: 0,
+                right: 10,
+                cursor: "pointer",
+                color: "orangered",
+              }}
+              onClick={() => setEdit("password")}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                right: edit === "password" ? "40px" : "-70px",
                 top: 0,
                 transition: "0.3s ease",
               }}

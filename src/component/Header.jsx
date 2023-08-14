@@ -5,16 +5,50 @@ import { SignUpContext } from "./SummonLogin/SummonSignUpComponent";
 import { Link as LinkScroll } from "react-scroll";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./Auth/AuthContext";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ACTION } from "../redux/filterActions";
 import { Typography } from "@mui/material";
 import { memo } from "react";
+import axios from "axios";
+import { baseUrl } from "../utils/utilFunctions";
+
 const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
   const login = useContext(LoginContext);
   const signup = useContext(SignUpContext);
   const { currentUser, logoutHandlerFunction } = useContext(AuthContext);
+  const [currentJwt, setCurrentJwt] = useState(() =>
+    JSON.parse(localStorage.getItem("jwt"))
+  );
   const dispatch = useDispatch();
+  const userEmail = useSelector((state) => state.user?.email);
+  const isActivated = useSelector((state) => state.user?.isActivated);
+  const paymentStatus = useSelector((state) => state.user?.payment);
+
+  useEffect(() => {
+    if (paymentStatus === "succeeded" && !isActivated) {
+      axios({
+        method: "PUT",
+        url: `${baseUrl}update-status`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          email: userEmail,
+          jwt: currentJwt,
+        },
+      })
+        .then((res) => {
+          dispatch({
+            type: ACTION.FETCH_USER_DATA,
+            payload: res.data.updateUser,
+          });
+          localStorage.setItem("user", JSON.stringify(res.data.updateUser));
+        })
+        .catch((err) => console.log(err));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paymentStatus, userEmail, isActivated]);
 
   useEffect(() => {
     dispatch({ type: ACTION.FETCH_USER_DATA, payload: currentUser });
