@@ -44,7 +44,7 @@ const FilterBy = () => {
         return dispatch({
           type: ACTION.UPDATE_DATA,
           payload: [...data].sort((a, b) =>
-            alphabeticalSort_Za(a.Name, b.Name)
+            alphabeticalSort_Za(a.Domain, b.Domain)
           ),
         });
 
