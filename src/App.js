@@ -8,10 +8,12 @@ import CartPage from "./component/cart/CartPage";
 import MyProfilePage from "./component/MyProfile/MyProfilePage";
 import PrivateRoute from "./component/protectRoute/PrivateRoute";
 import SignUpControlFlow from "./component/SignUpControlFlow";
+import SignInControlFlow from "./component/SignInControlFlow";
 
 function App() {
   return (
     <>
+      <SignInControlFlow />
       <SignUpControlFlow />
       <Routes>
         <Route exact path="/" element={<HomePage />} />

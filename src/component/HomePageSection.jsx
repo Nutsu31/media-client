@@ -7,7 +7,6 @@ import Gardening from "../Images/gardening.png";
 import trafficSearch from "../Images/search-traffic.png";
 import textCover from "../Images/XMLID_71.png";
 import Domain from "../Images/Domain.png";
-import LoginSection from "./LoginSection";
 import { Col, Row } from "antd";
 import greenThing from "../Images/greenComp.png";
 import { useContext} from "react";
@@ -42,7 +41,6 @@ const HomePageSection = () => {
 
   return (
     <>
-      <LoginSection />
       <section className="first_section">
         {/* Home Page Main text Divider */}
         <div className="first_section-container">

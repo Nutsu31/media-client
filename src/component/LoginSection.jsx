@@ -20,7 +20,7 @@ const LoginSection = () => {
     formState: { errors },
   } = useForm();
   const [loginError, setLoginError] = useState(null);
-
+  const [forgetPass, setForgetPass] = useState(null);
   const deleteHandleClick = (event) => {
     if (event.target === loginRef.current) {
       login?.loginDeleteHandler();
@@ -31,6 +31,7 @@ const LoginSection = () => {
     try {
       const loginData = await axios.post(`${baseUrl}auth/login`, data);
       setLoginError(<p className="error">{loginData.data.message}</p>);
+      setForgetPass("Forget your password?");
       dispatch({ type: ACTION.FETCH_USER_DATA, payload: loginData.data.user });
       loginHandlerFunction(loginData.data.user, loginData.data.jwt);
       login?.loginDeleteHandler();
@@ -91,7 +92,18 @@ const LoginSection = () => {
               <p className="error">{errors?.password?.message}</p>
             )}
           </div>
-          {loginError !== undefined && loginError}
+          <div>
+            {loginError !== undefined && loginError}
+            {forgetPass !== null && (
+              <p
+                className="error forgrt"
+                onClick={login?.forgotPasswordHandler}
+              >
+                Forget your password?
+              </p>
+            )}
+          </div>
+
           <button className="log-btn">Log into an account</button>
         </form>
       </div>
