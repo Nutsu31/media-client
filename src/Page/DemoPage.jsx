@@ -41,22 +41,19 @@ const DemoPage = () => {
   const filteredData = useMemo(() => {
     const keyList = ["Domain", "Niche", "AdNetwork", "Language", "Email"];
     return data.filter((item) => {
-      const domainMatch = item?.Domain.toLowerCase().includes(
-        domain.toLowerCase()
+      const domainMatch = item?.Domain?.toLowerCase().includes(
+        domain?.toLowerCase()
       );
       const categoryMatch = keyList.some((key) =>
         item[key]?.toLowerCase().includes(niche?.trim().toLowerCase())
       );
-      const firstNameMatch = item?.Name.toLowerCase().includes(
-        FirstName.toLowerCase()
+      const firstNameMatch = item?.Name?.toLowerCase().includes(
+        FirstName?.toLowerCase()
       );
       return domainMatch && categoryMatch && firstNameMatch;
     });
   }, [data, domain, niche, adNetworks, FirstName, language]); //eslint-disable-line
 
-
-
-  
   useEffect(() => {
     const filteredWithCheckbox = filterWithCheckbox(
       filteredData,
