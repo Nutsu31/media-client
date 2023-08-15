@@ -42,6 +42,10 @@ const DataTable = ({ data }) => {
     }
   };
 
+  function addedDate(date) {
+    return new Date(date).toLocaleDateString();
+  }
+
   useEffect(() => {
     async function getDatas() {
       const res = await axios.get(`${baseUrl}get-data`, {
@@ -121,6 +125,7 @@ const DataTable = ({ data }) => {
       }
     }
   }, [user, currentPage]); //eslint-disable-line
+
   return (
     <div className="table-wrapper">
       <table className="fl-table" id="table">
@@ -157,7 +162,7 @@ const DataTable = ({ data }) => {
               <td>{i.Niche}</td>
               <td>{i.Language}</td>
               <td>{i.Email}</td>
-              <td>{i.Added}</td>
+              <td>{addedDate(i.Added)}</td>
               <td>{i.AdNetwork}</td>
               <td className="lastTd">
                 <Link to={`/profile/${i.Domain}`}>
