@@ -10,6 +10,7 @@ const VerifyCode = ({ verify }) => {
   const login = useContext(LoginContext);
   const password = useRef(null);
   const [code, setCode] = useState("");
+  const [error, setError] = useState("");
   const deleteHandleClick = (event) => {
     if (event.target === password.current) {
       login?.verifyCodeDeleteHandler();
@@ -27,7 +28,10 @@ const VerifyCode = ({ verify }) => {
         login?.verifyCodeDeleteHandler();
         login?.changePasswordHandler();
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+       setError(error.response.data.message);
+    }
   };
   return (
     <div
@@ -54,6 +58,7 @@ const VerifyCode = ({ verify }) => {
             </div>
             <input type="password" onChange={(e) => setCode(e.target.value)} />
           </div>
+          {error && <p>{error}</p>}
 
           <button className="log-btn">Log into an account</button>
         </form>

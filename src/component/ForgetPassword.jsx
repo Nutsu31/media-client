@@ -11,6 +11,7 @@ import emailjs from "@emailjs/browser";
 const ForgetPassword = ({ verify, setVerify }) => {
   const password = useRef(null);
   const login = useContext(LoginContext);
+  const [error,setError]=useState('')
 
   const deleteHandleClick = (event) => {
     if (event.target === password.current) {
@@ -26,7 +27,7 @@ const ForgetPassword = ({ verify, setVerify }) => {
         email: verify,
         otp: `${randomTok}`,
       });
-      console.log(sendVerify.data);
+      console.log(sendVerify);
       if (sendVerify && sendVerify.data?.status === "success") {
         const emailMessage = {
           from_name: "SERP-support team",
@@ -43,7 +44,10 @@ const ForgetPassword = ({ verify, setVerify }) => {
 
         login?.verifyCodeHandler();
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+      setError(error.response.data.message)
+    }
   };
 
   return (
@@ -78,6 +82,8 @@ const ForgetPassword = ({ verify, setVerify }) => {
               onChange={(e) => setVerify(e.target.value)}
             />
           </div>
+
+          {error && <p>{error}</p>}
 
           <button className="log-btn">Log into an account</button>
         </form>

@@ -13,7 +13,7 @@ const SignInControlFlow = () => {
       <LoginSection />
       <ForgetPassword verify={verify} setVerify={setVerify} />
       <VerifyCode verify={verify} />
-      <UpdatePassword email={verify} />
+      <UpdatePassword email={verify} setVerify={setVerify} />
     </>
   );
 }
